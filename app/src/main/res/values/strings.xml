@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DH Art &amp; Museum</string>
+    <string name="username_or_email">Username or Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="or">OR</string>
+    <string name="login_with_facebook">login with facebook</string>
+    <string name="login_with_twitter">login with twitter</string>
+    <string name="login_with_google">login with google</string>
 </resources>
