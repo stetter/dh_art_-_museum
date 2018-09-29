@@ -17,6 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".CadastroActivity"></activity>
+        <activity android:name=".SplashActivity"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
