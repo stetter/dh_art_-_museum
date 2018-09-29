@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimary">#FF5722</color>
+    <color name="colorPrimaryDark">#1E2D3E</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimarySignUp">#1E2D3E</color>
+    <color name="divider">#FF5722</color>
+    <color name="facebook">#2f66ab</color>
+    <color name="twiter">#00a2f1</color>
+    <color name="google">#ce2a15</color>
+    <color name="textWhite">#FFFFFF</color>
 </resources>

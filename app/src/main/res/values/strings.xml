@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">DH Art &amp; Museum</string>
+    <string name="username_or_email">Username or Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="or">OR</string>
+    <string name="login_with_facebook">login with facebook</string>
+    <string name="login_with_twitter">login with twitter</string>
+    <string name="login_with_google">login with google</string>
+    <string name="username">Username</string>
+    <string name="e_mail">E-mail</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="i_agree_with_terms_and_conditions">I agree with Terms and Conditions</string>
     <string name="DH"><![CDATA[ART & MUSEUM]]></string>
 </resources>
