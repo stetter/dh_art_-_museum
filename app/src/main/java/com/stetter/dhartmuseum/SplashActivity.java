@@ -9,19 +9,28 @@ import android.widget.TextView;
 public class SplashActivity extends AppCompatActivity {
 
     TextView textViewWelcome;
+    TextView textViewArtMuseum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        textViewWelcome = findViewById(R.id.textView2);
+        textViewWelcome = findViewById(R.id.textViewWelcome);
+        textViewArtMuseum = findViewById(R.id.textViewArtMuseum);
 
         textViewWelcome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            }
+        });
+
+        textViewArtMuseum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
             }
         });
     }
