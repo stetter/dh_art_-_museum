@@ -127,5 +127,4 @@ public class Venue {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
-
 }

@@ -1,33 +1,48 @@
 
 package com.stetter.dhartmuseum.model;
 
-import java.util.List;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 
+import java.util.List;
 
-public class Record {
+@Entity(tableName = "Exhibtion")
+public class Exhibtion {
+
 
     @Expose
     private String begindate;
+
     @Expose
     private Object color;
+
     @Expose
     private Object description;
+
     @Expose
     private String enddate;
+
     @Expose
     private Long exhibitionid;
+
+    @PrimaryKey
     @Expose
     private Long id;
+
     @Expose
     private String lastupdate;
+
     @Expose
     private Object shortdescription;
+
     @Expose
     private Long temporalorder;
+
     @Expose
     private String title;
+
     @Expose
     private List<Venue> venues;
 
@@ -118,5 +133,6 @@ public class Record {
     public void setVenues(List<Venue> venues) {
         this.venues = venues;
     }
+
 
 }
