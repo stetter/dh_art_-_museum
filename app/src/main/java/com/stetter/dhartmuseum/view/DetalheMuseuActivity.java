@@ -1,12 +1,16 @@
-package com.stetter.dhartmuseum;
+package com.stetter.dhartmuseum.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
+import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
@@ -29,34 +33,11 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
         getListObras();
         setaRecyclerView();
 
-    }
 
-    //implementa o menu
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate( R.menu.menu_main, menu );
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected( item );
     }
 
     public void setaRecyclerView(){
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview  );
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -88,7 +69,27 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
 
     @Override
     public void onItemClick(Obras obras) {
+        startActivity(new Intent(DetalheMuseuActivity.this, ObrasActivity.class));
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate( R.menu.menu_favorito, menu );
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.adc_favorito) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected( item );
     }
 
 }

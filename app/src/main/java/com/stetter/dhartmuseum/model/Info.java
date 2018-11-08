@@ -1,13 +1,12 @@
 
 package com.stetter.dhartmuseum.model;
 
-
 import com.google.gson.annotations.Expose;
 
 
 public class Info {
 
-    @Expose
+  @Expose
     private Long page;
     @Expose
     private Long pages;
