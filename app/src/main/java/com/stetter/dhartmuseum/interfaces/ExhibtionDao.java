@@ -7,19 +7,19 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.stetter.dhartmuseum.model.Exhibtion;
+import com.stetter.dhartmuseum.model.Exhibition;
 
 @Dao
 public interface ExhibtionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Exhibtion exhibtion);
+    void insert(Exhibition exhibtion);
 
     @Update
-    void update (Exhibtion exhibtion);
+    void update (Exhibition exhibtion);
 
     @Delete
-    void delete(Exhibtion exhibtion);
+    void delete(Exhibition exhibtion);
 
-    @Query( " select * from exhibtion where id = :id")
-    Exhibtion getById(long id);
+    @Query( " select * from exhibition where id = :id")
+    Exhibition getById(long id);
 }

@@ -2,10 +2,14 @@ package com.stetter.dhartmuseum.data.database;
 
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.stetter.dhartmuseum.interfaces.ExhibitionDao;
-@android.arch.persistence.room.Database(entities = {ExhibitionDao.class},version =1 )
+import com.stetter.dhartmuseum.model.Exhibition;
+
+@android.arch.persistence.room.Database(entities = {Exhibition.class},version =1 ,exportSchema = false)
+@TypeConverters( Converters.class )
 public abstract class Database extends RoomDatabase {
 
 

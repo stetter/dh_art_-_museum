@@ -15,7 +15,7 @@ public class ExhibtionResponse {
 
     @Expose
     @SerializedName("records")
-    private List<Exhibtion> records;
+    private List<Exhibition> records;
 
     public Info getInfo() {
         return info;
@@ -25,11 +25,11 @@ public class ExhibtionResponse {
         this.info = info;
     }
 
-    public List<Exhibtion> getRecords() {
+    public List<Exhibition> getRecords() {
         return records;
     }
 
-    public void setRecords(List<Exhibtion> records) {
+    public void setRecords(List<Exhibition> records) {
         this.records = records;
     }
 
