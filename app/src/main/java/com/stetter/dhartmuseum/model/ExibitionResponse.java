@@ -2,20 +2,19 @@
 package com.stetter.dhartmuseum.model;
 
 import java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class ExhibtionResponse {
-
+public class ExibitionResponse {
 
     @Expose
-    @SerializedName("info")
+    @SerializedName( "info" )
     private Info info;
-
     @Expose
     @SerializedName("records")
-    private List<Exhibition> records;
+    private List<Exhibition> exhibitions;
 
     public Info getInfo() {
         return info;
@@ -25,12 +24,12 @@ public class ExhibtionResponse {
         this.info = info;
     }
 
-    public List<Exhibition> getRecords() {
-        return records;
+    public List<Exhibition> getExhibitions() {
+        return exhibitions;
     }
 
-    public void setRecords(List<Exhibition> records) {
-        this.records = records;
+    public void setExhibitions(List<Exhibition> records) {
+        this.exhibitions = records;
     }
 
 }

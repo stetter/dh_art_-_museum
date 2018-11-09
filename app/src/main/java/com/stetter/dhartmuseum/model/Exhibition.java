@@ -5,20 +5,23 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-@Entity(tableName = "Exhibtion")
-public class Exhibtion {
-
+@Entity(tableName = "exhibition")
+public class Exhibition {
 
     @Expose
+    @SerializedName( "begindate" )
     private String begindate;
 
     @Expose
+    @SerializedName( "color" )
     private Object color;
 
     @Expose
+    @SerializedName( "description" )
     private Object description;
 
     @Expose
@@ -44,7 +47,9 @@ public class Exhibtion {
     private String title;
 
     @Expose
+
     private List<Venue> venues;
+
 
     public String getBegindate() {
         return begindate;
@@ -133,6 +138,5 @@ public class Exhibtion {
     public void setVenues(List<Venue> venues) {
         this.venues = venues;
     }
-
 
 }
