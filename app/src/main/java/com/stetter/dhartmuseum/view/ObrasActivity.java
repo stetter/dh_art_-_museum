@@ -64,6 +64,7 @@ public class ObrasActivity extends AppCompatActivity {
                 // Show anchored to button
                 popup.setBackgroundDrawable(new BitmapDrawable());
                 popup.showAsDropDown(imageViewMenu);
+
             }
         });
     }
