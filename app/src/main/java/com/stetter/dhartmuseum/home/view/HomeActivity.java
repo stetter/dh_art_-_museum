@@ -1,4 +1,4 @@
-package com.stetter.dhartmuseum.view;
+package com.stetter.dhartmuseum.home.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
+import com.stetter.dhartmuseum.view.DetalheMuseuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
