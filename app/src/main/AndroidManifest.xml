@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.SplashActivity"
+            android:name=".home.view.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"
@@ -23,15 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.CadastroActivity" />
-        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".login.view.CadastroActivity" />
+        <activity android:name=".login.view.LoginActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".view.DetalheMuseuActivity" />
-        <activity android:name=".view.HomeActivity" />
         <activity android:name=".view.ObrasActivity"
             android:theme="@style/AppTheme.NoActionBar"
             >
