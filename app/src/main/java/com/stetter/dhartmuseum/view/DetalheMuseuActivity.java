@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
+import com.stetter.dhartmuseum.adapters.RecyclerviewExhibition;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
 
@@ -20,6 +21,7 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     RecyclerViewObrasAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
 
         adapter = new RecyclerViewObrasAdapter(this, listObras, this);
         mRecyclerView.setAdapter(adapter);
+
+
+
     }
 
     //Carrega a lista de  pessoas

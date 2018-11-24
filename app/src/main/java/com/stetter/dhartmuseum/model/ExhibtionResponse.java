@@ -32,5 +32,4 @@ public class ExhibtionResponse {
     public void setRecords(List<Exhibition> records) {
         this.records = records;
     }
-
 }

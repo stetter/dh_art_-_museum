@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.stetter.dhartmuseum.R;
-import com.stetter.dhartmuseum.view.HomeActivity;
+import com.stetter.dhartmuseum.home.view.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

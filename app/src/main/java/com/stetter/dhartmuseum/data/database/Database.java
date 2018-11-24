@@ -13,7 +13,7 @@ import com.stetter.dhartmuseum.model.Exhibition;
 public abstract class Database extends RoomDatabase {
 
 
-    public abstract ExhibitionDao getExhibitionDao();
+    public abstract ExhibitionDao exhibitionDao();
 
     private static volatile Database INSTANCE;
 

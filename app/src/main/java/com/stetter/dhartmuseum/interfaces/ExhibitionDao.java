@@ -1,6 +1,5 @@
 package com.stetter.dhartmuseum.interfaces;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -11,6 +10,9 @@ import android.arch.persistence.room.Update;
 import com.stetter.dhartmuseum.model.Exhibition;
 
 import java.util.List;
+
+import io.reactivex.Flowable;
+
 @Dao
 public interface ExhibitionDao {
 
@@ -24,7 +26,7 @@ public interface ExhibitionDao {
     void delete (Exhibition exhibition);
 
     @Query("Select * from exhibition limit 30")
-    LiveData<List<Exhibition>> getAll();
+    Flowable<List<Exhibition>> getAll();
 
     @Query( "Select * from exhibition where id= :id" )
     Exhibition getById (long id);

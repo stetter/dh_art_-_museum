@@ -51,6 +51,7 @@ public class RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewO
         });
     }
 
+
     @Override
     public int getItemCount() {
         return listaObras.size();
