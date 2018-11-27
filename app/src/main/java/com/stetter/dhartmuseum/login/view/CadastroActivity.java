@@ -1,10 +1,12 @@
-package com.stetter.dhartmuseum;
+package com.stetter.dhartmuseum.login.view;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.stetter.dhartmuseum.R;
 
 public class CadastroActivity extends AppCompatActivity {
 

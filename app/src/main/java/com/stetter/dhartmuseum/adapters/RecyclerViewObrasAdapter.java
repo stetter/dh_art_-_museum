@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.stetter.dhartmuseum.DetalheMuseuActivity;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
@@ -51,6 +50,7 @@ public class RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewO
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
