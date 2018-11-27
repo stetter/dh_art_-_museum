@@ -15,7 +15,8 @@ import com.stetter.dhartmuseum.model.Obras;
 
 import java.util.List;
 
-public class RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.ViewHolder> {
+public class
+RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.ViewHolder> {
 
     private List<Obras> listaObras;
     Context mctx;
