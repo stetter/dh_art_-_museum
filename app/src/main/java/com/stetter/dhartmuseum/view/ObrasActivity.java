@@ -47,26 +47,6 @@ public class ObrasActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar( toolbar );
 
-
-
-        imageViewMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupWindow popup = new PopupWindow( ObrasActivity.this);
-                View layout = getLayoutInflater().inflate(R.layout.popup_menu, null);
-                popup.setContentView(layout);
-                // Set content width and height
-                popup.setHeight( WindowManager.LayoutParams.WRAP_CONTENT);
-                popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
-                // Closes the popup window when touch outside of it - when looses focus
-                popup.setOutsideTouchable(true);
-                popup.setFocusable(true);
-                // Show anchored to button
-                popup.setBackgroundDrawable(new BitmapDrawable());
-                popup.showAsDropDown(imageViewMenu);
-
-            }
-        });
     }
     public void collapseExpandCardView(){
         if(textViewLerDetalhes.getVisibility() == View.GONE){

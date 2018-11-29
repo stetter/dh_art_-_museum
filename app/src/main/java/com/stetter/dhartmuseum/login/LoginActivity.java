@@ -33,6 +33,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.stetter.dhartmuseum.R;
+import com.stetter.dhartmuseum.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -93,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), com.stetter.dhartmuseum.HomeActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                                     finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -124,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         });
 
         if (firebaseAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), com.stetter.dhartmuseum.HomeActivity.class));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         }
     }
 
@@ -188,7 +189,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(getApplicationContext(), com.stetter.dhartmuseum.HomeActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "Auth Error", Toast.LENGTH_SHORT).show();

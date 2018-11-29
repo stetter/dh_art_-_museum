@@ -47,7 +47,7 @@
         </activity>
         <activity android:name=".login.CadastroActivity" />
         <activity android:name=".DetalheMuseuActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".home.HomeActivity" />
         <activity android:name=".login.LoginActivity" />
 
         <meta-data
