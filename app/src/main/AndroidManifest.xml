@@ -35,7 +35,7 @@
 
 
         <activity
-            android:name=".login.view.SplashActivity"
+            android:name=".splash.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,17 +45,15 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".login.view.CadastroActivity" />
-        <activity android:name=".login.view.LoginActivity" />
-        <activity
-            android:name=".home.view.HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".login.CadastroActivity" />
+        <activity android:name=".DetalheMuseuActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".login.LoginActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".view.DetalheMuseuActivity" />
         <activity
             android:name=".view.ObrasActivity"
             android:theme="@style/AppTheme.NoActionBar">
