@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
@@ -16,10 +17,11 @@ import com.stetter.dhartmuseum.model.Record;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class
 RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.ViewHolder> {
 
-    private List<Obras> listaObras;
     private List<Record> listaRecord;
     Context mctx;
     private RecyclerViewOnItemClickListener listener;
@@ -29,14 +31,6 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
         this.mctx = context;
         this.listener = listener;
     }
-
-   /* public RecyclerViewObrasAdapter(Context context, List<Obras> listObras, RecyclerViewOnItemClickListener listener ) {
-        this.mctx = context;
-        this.listaObras = listObras;
-        this.listener = listener;
-
-
-    }*/
 
     @NonNull
     @Override
@@ -50,7 +44,8 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
         final Record record = listaRecord.get(position);
 
         holder.obra.setText(record.getTitle());
-        holder.descrição.setText(record.getTitle());
+        holder.descrição.setText(record.getClassification());
+        Picasso.get().load(record.getPrimaryimageurl()).into(holder.imagem);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +65,14 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
 
         protected TextView obra;
         protected TextView descrição;
+        protected CircleImageView imagem;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             obra = (TextView) itemView.findViewById(R.id.textViewRecyclerObra);
             descrição = (TextView) itemView.findViewById(R.id.textViewRecyclerDescricao);
+            imagem = (CircleImageView) itemView.findViewById(R.id.circleImageView);
         }
     }
 }

@@ -3,13 +3,63 @@ package com.stetter.dhartmuseum.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 
 @Entity(tableName = "records")
 
-public class Record {
+public class Record implements Parcelable {
+
+    public Record(String accessionmethod, Long accessionyear, Long accesslevel, String century, String classification, Long classificationid, Long colorcount, String contact, Long contextualtextcount, String creditline, String culture, Long datebegin, String dated, Long dateend, String dateoffirstpageview, String dateoflastpageview, String department, String dimensions, String division, Long exhibitioncount, Long groupcount, Long id, Long imagecount, Long imagepermissionlevel, String lastupdate, Long markscount, Long mediacount, Long objectid, String objectnumber, Long peoplecount, String primaryimageurl, String provenance, Long publicationcount, Long rank, Long relatedcount, String standardreferencenumber, String technique, Long techniqueid, String title, Long titlescount, Long totalpageviews, Long totaluniquepageviews, String url, Long verificationlevel, String verificationleveldescription) {
+        this.accessionmethod = accessionmethod;
+        this.accessionyear = accessionyear;
+        this.accesslevel = accesslevel;
+        this.century = century;
+        this.classification = classification;
+        this.classificationid = classificationid;
+        this.colorcount = colorcount;
+        this.contact = contact;
+        this.contextualtextcount = contextualtextcount;
+        this.creditline = creditline;
+        this.culture = culture;
+        this.datebegin = datebegin;
+        this.dated = dated;
+        this.dateend = dateend;
+        this.dateoffirstpageview = dateoffirstpageview;
+        this.dateoflastpageview = dateoflastpageview;
+        this.department = department;
+        this.dimensions = dimensions;
+        this.division = division;
+        this.exhibitioncount = exhibitioncount;
+        this.groupcount = groupcount;
+        this.id = id;
+        this.imagecount = imagecount;
+        this.imagepermissionlevel = imagepermissionlevel;
+        this.lastupdate = lastupdate;
+        this.markscount = markscount;
+        this.mediacount = mediacount;
+        this.objectid = objectid;
+        this.objectnumber = objectnumber;
+        this.peoplecount = peoplecount;
+        this.primaryimageurl = primaryimageurl;
+        this.provenance = provenance;
+        this.publicationcount = publicationcount;
+        this.rank = rank;
+        this.relatedcount = relatedcount;
+        this.standardreferencenumber = standardreferencenumber;
+        this.technique = technique;
+        this.techniqueid = techniqueid;
+        this.title = title;
+        this.titlescount = titlescount;
+        this.totalpageviews = totalpageviews;
+        this.totaluniquepageviews = totaluniquepageviews;
+        this.url = url;
+        this.verificationlevel = verificationlevel;
+        this.verificationleveldescription = verificationleveldescription;
+    }
 
     @Expose
     private String accessionmethod;
@@ -51,8 +101,8 @@ public class Record {
     private String dateoflastpageview;
     @Expose
     private String department;
-    //@Expose
-    //private Object description;
+    @Expose
+    private String description;
     @Expose
     private String dimensions;
     @Expose
@@ -93,9 +143,9 @@ public class Record {
     /*@Expose
     private Object period;
     @Expose
-    private Object periodid;
+    private Object periodid;*/
     @Expose
-    private Object primaryimageurl;*/
+    private String primaryimageurl;
     @Expose
     private String provenance;
     @Expose
@@ -134,6 +184,164 @@ public class Record {
     private String verificationleveldescription;
     /*@Expose
     private List<Worktype> worktypes;*/
+
+
+    protected Record(Parcel in) {
+        accessionmethod = in.readString();
+        if (in.readByte() == 0) {
+            accessionyear = null;
+        } else {
+            accessionyear = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            accesslevel = null;
+        } else {
+            accesslevel = in.readLong();
+        }
+        century = in.readString();
+        classification = in.readString();
+        if (in.readByte() == 0) {
+            classificationid = null;
+        } else {
+            classificationid = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            colorcount = null;
+        } else {
+            colorcount = in.readLong();
+        }
+        contact = in.readString();
+        if (in.readByte() == 0) {
+            contextualtextcount = null;
+        } else {
+            contextualtextcount = in.readLong();
+        }
+        creditline = in.readString();
+        culture = in.readString();
+        if (in.readByte() == 0) {
+            datebegin = null;
+        } else {
+            datebegin = in.readLong();
+        }
+        dated = in.readString();
+        if (in.readByte() == 0) {
+            dateend = null;
+        } else {
+            dateend = in.readLong();
+        }
+        dateoffirstpageview = in.readString();
+        dateoflastpageview = in.readString();
+        department = in.readString();
+        description = in.readString();
+        dimensions = in.readString();
+        division = in.readString();
+        if (in.readByte() == 0) {
+            exhibitioncount = null;
+        } else {
+            exhibitioncount = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            groupcount = null;
+        } else {
+            groupcount = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            imagecount = null;
+        } else {
+            imagecount = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            imagepermissionlevel = null;
+        } else {
+            imagepermissionlevel = in.readLong();
+        }
+        lastupdate = in.readString();
+        if (in.readByte() == 0) {
+            markscount = null;
+        } else {
+            markscount = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            mediacount = null;
+        } else {
+            mediacount = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            objectid = null;
+        } else {
+            objectid = in.readLong();
+        }
+        objectnumber = in.readString();
+        if (in.readByte() == 0) {
+            peoplecount = null;
+        } else {
+            peoplecount = in.readLong();
+        }
+        primaryimageurl = in.readString();
+        provenance = in.readString();
+        if (in.readByte() == 0) {
+            publicationcount = null;
+        } else {
+            publicationcount = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            rank = null;
+        } else {
+            rank = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            relatedcount = null;
+        } else {
+            relatedcount = in.readLong();
+        }
+        standardreferencenumber = in.readString();
+        technique = in.readString();
+        if (in.readByte() == 0) {
+            techniqueid = null;
+        } else {
+            techniqueid = in.readLong();
+        }
+        title = in.readString();
+        if (in.readByte() == 0) {
+            titlescount = null;
+        } else {
+            titlescount = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            totalpageviews = null;
+        } else {
+            totalpageviews = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            totaluniquepageviews = null;
+        } else {
+            totaluniquepageviews = in.readLong();
+        }
+        url = in.readString();
+        if (in.readByte() == 0) {
+            verificationlevel = null;
+        } else {
+            verificationlevel = in.readLong();
+        }
+        verificationleveldescription = in.readString();
+    }
+
+    public static final Creator<Record> CREATOR = new Creator<Record>() {
+        @Override
+        public Record createFromParcel(Parcel in) {
+            return new Record(in);
+        }
+
+        @Override
+        public Record[] newArray(int size) {
+            return new Record[size];
+        }
+    };
 
     public String getAccessionmethod() {
         return accessionmethod;
@@ -295,13 +503,13 @@ public class Record {
         this.department = department;
     }
 
-   /* public Object getDescription() {
+   public String getDescription() {
         return description;
     }
 
-    public void setDescription(Object description) {
+    public void setDescription(String description) {
         this.description = description;
-    }*/
+    }
 
     public String getDimensions() {
         return dimensions;
@@ -461,15 +669,15 @@ public class Record {
 
     public void setPeriodid(Object periodid) {
         this.periodid = periodid;
-    }
+    }*/
 
-    public Object getPrimaryimageurl() {
+    public String getPrimaryimageurl() {
         return primaryimageurl;
     }
 
-    public void setPrimaryimageurl(Object primaryimageurl) {
+    public void setPrimaryimageurl(String primaryimageurl) {
         this.primaryimageurl = primaryimageurl;
-    }*/
+    }
 
     public String getProvenance() {
         return provenance;
@@ -613,6 +821,181 @@ public class Record {
 
     public void setVerificationleveldescription(String verificationleveldescription) {
         this.verificationleveldescription = verificationleveldescription;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(accessionmethod);
+        if (accessionyear == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(accessionyear);
+        }
+        if (accesslevel == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(accesslevel);
+        }
+        dest.writeString(century);
+        dest.writeString(classification);
+        if (classificationid == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(classificationid);
+        }
+        if (colorcount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(colorcount);
+        }
+        dest.writeString(contact);
+        if (contextualtextcount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(contextualtextcount);
+        }
+        dest.writeString(creditline);
+        dest.writeString(culture);
+        if (datebegin == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(datebegin);
+        }
+        dest.writeString(dated);
+        if (dateend == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(dateend);
+        }
+        dest.writeString(dateoffirstpageview);
+        dest.writeString(dateoflastpageview);
+        dest.writeString(department);
+        dest.writeString(description);
+        dest.writeString(dimensions);
+        dest.writeString(division);
+        if (exhibitioncount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(exhibitioncount);
+        }
+        if (groupcount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(groupcount);
+        }
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
+        if (imagecount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(imagecount);
+        }
+        if (imagepermissionlevel == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(imagepermissionlevel);
+        }
+        dest.writeString(lastupdate);
+        if (markscount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(markscount);
+        }
+        if (mediacount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(mediacount);
+        }
+        if (objectid == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(objectid);
+        }
+        dest.writeString(objectnumber);
+        if (peoplecount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(peoplecount);
+        }
+        dest.writeString(primaryimageurl);
+        dest.writeString(provenance);
+        if (publicationcount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(publicationcount);
+        }
+        if (rank == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(rank);
+        }
+        if (relatedcount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(relatedcount);
+        }
+        dest.writeString(standardreferencenumber);
+        dest.writeString(technique);
+        if (techniqueid == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(techniqueid);
+        }
+        dest.writeString(title);
+        if (titlescount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(titlescount);
+        }
+        if (totalpageviews == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(totalpageviews);
+        }
+        if (totaluniquepageviews == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(totaluniquepageviews);
+        }
+        dest.writeString(url);
+        if (verificationlevel == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(verificationlevel);
+        }
+        dest.writeString(verificationleveldescription);
     }
 
   /*  public List<Worktype> getWorktypes() {

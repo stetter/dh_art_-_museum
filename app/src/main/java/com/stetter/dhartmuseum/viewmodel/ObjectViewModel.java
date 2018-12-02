@@ -35,12 +35,12 @@ public class ObjectViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void getObjects() {
+    public void getObjects(String sort) {
 
         if (isNetworkConnected(getApplication())) {
 
             disposable.add(
-                    getApiService().getObjects(API_KEY)
+                    getApiService().getObjects(sort, API_KEY)
                            /* .map(response -> {
                                 return saveObject(response);
                             })*/

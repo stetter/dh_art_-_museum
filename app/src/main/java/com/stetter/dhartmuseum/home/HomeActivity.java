@@ -15,6 +15,7 @@ import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
 import com.stetter.dhartmuseum.model.Record;
+import com.stetter.dhartmuseum.view.ObrasActivity;
 import com.stetter.dhartmuseum.viewmodel.ObjectViewModel;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
 
         objectViewModel = ViewModelProviders.of(this).get(ObjectViewModel.class);
 
-        objectViewModel.getObjects();
+        objectViewModel.getObjects("primaryimageurl");
 
         objectViewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
             @Override
@@ -47,10 +48,6 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
                 setaRecyclerView();
             }
         });
-
-        getListObras();
-
-
     }
 
     public void setaRecyclerView() {
@@ -62,31 +59,11 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
         mRecyclerView.setAdapter(adapter);
     }
 
-    //Carrega a lista de  pessoas
-    private List<Obras> getListObras() {
-
-        // Limpo a lista para adicionar mais pessoas e evitar
-        // Duplicar as pessoas
-        listObras.clear();
-        listObras.add(new Obras("Museu Louvre", "Inaugurado em 1900"));
-        listObras.add(new Obras("Museu do Ipiranga", "Inaugurado em 1910"));
-        listObras.add(new Obras("Guernica", "Elaborada em XXXX"));
-        listObras.add(new Obras("Abaporu", "Elaborada em XXXX"));
-        listObras.add(new Obras("Mona Liza", "Elaborada em XXXX"));
-        listObras.add(new Obras("O Beijo", "Elaborada em XXXX"));
-        listObras.add(new Obras("Guernica", "Elaborada em XXXX"));
-        listObras.add(new Obras("Abaporu", "Elaborada em XXXX"));
-        listObras.add(new Obras("Mona Liza", "Elaborada em XXXX"));
-        listObras.add(new Obras("O Beijo", "Elaborada em XXXX"));
-        listObras.add(new Obras("Abaporu", "Elaborada em XXXX"));
-
-
-        return listObras;
-    }
-
-
     @Override
     public void onItemClick(Record record) {
-        startActivity(new Intent(HomeActivity.this, DetalheMuseuActivity.class));
+        Intent intent = new Intent(HomeActivity.this, ObrasActivity.class);
+        intent.putExtra("record", record);
+        startActivity(intent);
+        //startActivity(new Intent(HomeActivity.this, ObrasActivity.class));
     }
 }

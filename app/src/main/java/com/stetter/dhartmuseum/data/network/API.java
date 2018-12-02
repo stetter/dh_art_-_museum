@@ -14,6 +14,7 @@ public interface API {
     Observable<ObjectResponse> getObjects(
            /* @Query("classification") String classification,
             @Query("q") String q,*/
+           @Query("sort") String sort,
             @Query("apikey") String apikey
     );
 }
