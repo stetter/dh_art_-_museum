@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
+import com.stetter.dhartmuseum.model.Record;
 
 import java.util.List;
 
@@ -19,16 +20,23 @@ public class
 RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.ViewHolder> {
 
     private List<Obras> listaObras;
+    private List<Record> listaRecord;
     Context mctx;
     private RecyclerViewOnItemClickListener listener;
 
-    public RecyclerViewObrasAdapter(Context context, List<Obras> listObras, RecyclerViewOnItemClickListener listener ) {
+    public RecyclerViewObrasAdapter(Context context, List<Record> listaRecord, RecyclerViewOnItemClickListener listener) {
+        this.listaRecord = listaRecord;
+        this.mctx = context;
+        this.listener = listener;
+    }
+
+   /* public RecyclerViewObrasAdapter(Context context, List<Obras> listObras, RecyclerViewOnItemClickListener listener ) {
         this.mctx = context;
         this.listaObras = listObras;
         this.listener = listener;
 
 
-    }
+    }*/
 
     @NonNull
     @Override
@@ -39,15 +47,15 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewObrasAdapter.ViewHolder holder, int position) {
-        final Obras obras = listaObras.get(position);
+        final Record record = listaRecord.get(position);
 
-        holder.obra.setText(obras.getObra());
-        holder.descrição.setText(obras.getDescrição());
+        holder.obra.setText(record.getTitle());
+        holder.descrição.setText(record.getTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onItemClick(obras);
+                listener.onItemClick(record);
             }
         });
     }
@@ -55,7 +63,7 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
 
     @Override
     public int getItemCount() {
-        return listaObras.size();
+        return listaRecord.size();
     }
 
     protected class ViewHolder extends RecyclerView.ViewHolder {

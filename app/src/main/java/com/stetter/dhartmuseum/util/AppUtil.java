@@ -1,11 +1,12 @@
-package com.stetter.dhartmuseum.util;
+package com.digiwood.digiwood.data.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class AppUtil {
-    public static boolean isConnected(Context context) {
+
+    public static boolean isNetworkConnected(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo;
 
@@ -17,4 +18,5 @@ public class AppUtil {
         }
         return false;
     }
+
 }

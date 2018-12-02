@@ -6,7 +6,9 @@ import com.google.gson.annotations.Expose;
 
 public class Info {
 
-  @Expose
+    @Expose
+    private String next;
+    @Expose
     private Long page;
     @Expose
     private Long pages;
@@ -14,6 +16,14 @@ public class Info {
     private Long totalrecords;
     @Expose
     private Long totalrecordsperquery;
+
+    public String getNext() {
+        return next;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
+    }
 
     public Long getPage() {
         return page;

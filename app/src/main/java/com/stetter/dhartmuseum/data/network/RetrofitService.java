@@ -12,21 +12,22 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
-    private static final String BASE_URL = "https://api.harvardartmuseums.or";
+    private static final String BASE_URL = "https://api.harvardartmuseums.org";
     public static final String API_KEY = "8b3bae80-bb8c-11e8-888b-13edf83f81a3";
     private static Retrofit retrofit;
 
     private static Retrofit getRetrofit() {
 
-
+        // Se a variavém retrofite estiver nula inicializamos
         if (retrofit == null) {
 
-
+            // Configuração de parametros de conexão
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
             httpClient.readTimeout(30, TimeUnit.SECONDS);
             httpClient.connectTimeout(30, TimeUnit.SECONDS);
             httpClient.writeTimeout(30, TimeUnit.SECONDS);
 
+            // Se estivermos em modo DEBUG habilitamos os logs
             if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
                 httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -34,7 +35,7 @@ public class RetrofitService {
                 httpClient.addNetworkInterceptor(new StethoInterceptor());
             }
 
-
+            // inicializamos o retrofit com as configurações
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -46,7 +47,9 @@ public class RetrofitService {
         return retrofit;
     }
 
+    // Retornamos a api criada com o retrofit
     public static API getApiService() {
         return getRetrofit().create(API.class);
     }
+
 }

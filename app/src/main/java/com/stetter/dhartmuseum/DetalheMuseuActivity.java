@@ -1,24 +1,29 @@
 package com.stetter.dhartmuseum;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
+import com.stetter.dhartmuseum.model.Record;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
 
-    private List<Obras> listObras = new ArrayList<>();
+    private List<Record> listObras = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
+    private ImageView map;
     RecyclerViewObrasAdapter adapter;
 
     @Override
@@ -33,8 +38,18 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe_museu);
 
-        getListObras();
+        /*getListObras();*/
         setaRecyclerView();
+
+        map = findViewById(R.id.map);
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DetalheMuseuActivity.this, MapsActivity.class));
+            }
+        });
+
 
     }
 
@@ -48,7 +63,7 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
     }
 
     //Carrega a lista de  pessoas
-    private List<Obras> getListObras() {
+    /*private List<Obras> getListObras() {
 
         // Limpo a lista para adicionar mais pessoas e evitar
         // Duplicar as pessoas
@@ -67,10 +82,10 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
 
 
         return listObras;
-    }
+    }*/
 
     @Override
-    public void onItemClick(Obras obras) {
+    public void onItemClick(Record record) {
 
     }
 
