@@ -1,7 +1,7 @@
 package com.stetter.dhartmuseum.interfaces;
 
-import com.stetter.dhartmuseum.model.Obras;
+import com.stetter.dhartmuseum.model.Record;
 
 public interface RecyclerViewOnItemClickListener {
-    void onItemClick(Obras obras);
+    void onItemClick(Record record);
 }

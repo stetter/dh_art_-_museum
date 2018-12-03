@@ -1,66 +1,37 @@
 package com.stetter.dhartmuseum.view;
 
-import android.app.Activity;
-import android.graphics.drawable.BitmapDrawable;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.stetter.dhartmuseum.R;
-import com.stetter.dhartmuseum.model.Obras;
+import com.stetter.dhartmuseum.model.Record;
 
 public class ObrasActivity extends AppCompatActivity {
 
-    private TextView textViewLerMais;
-    private TextView textViewLerDetalhes;
-    private TextView textViewNoticia;
-    private View linha4;
-    private View linha5;
-    private ImageView imageViewMenu;
-    private Toolbar toolbar;
+    private ImageView imageViewObra;
+    private TextView textViewDescricao;
+    private TextView textViewCulture;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_obras);
 
+        imageViewObra = findViewById(R.id.imageView2);
+        textViewDescricao = findViewById(R.id.textView2);
+        textViewCulture = findViewById(R.id.textViewCulture);
 
-        textViewLerDetalhes = findViewById(R.id.text_view_detalhes);
-        textViewLerMais = findViewById(R.id.ler_mais);
-        textViewNoticia = findViewById(R.id.noticias);
-        linha4 = findViewById(R.id.linha4);
-        linha5 = findViewById(R.id.linha5);
+        Record record = getIntent().getParcelableExtra("record");
 
-        textViewLerMais.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                collapseExpandCardView();
-            }
-        });
+        textViewDescricao.setText(record.getDescription());
+        textViewCulture.setText("Cultura: "+ record.getCulture());
+        Picasso.get().load(record.getPrimaryimageurl()).into(imageViewObra);
 
-        imageViewMenu = findViewById(R.id.image_menu);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar( toolbar );
-
-    }
-    public void collapseExpandCardView(){
-        if(textViewLerDetalhes.getVisibility() == View.GONE){
-            textViewLerDetalhes.setVisibility(View.VISIBLE);
-            textViewNoticia.setVisibility(View.GONE);
-            linha4.setVisibility(View.GONE);
-            linha5.setVisibility(View.GONE);
-        }else{
-
-            textViewLerDetalhes.setVisibility(View.GONE);
-            textViewNoticia.setVisibility(View.VISIBLE);
-            linha4.setVisibility(View.VISIBLE);
-            linha5.setVisibility(View.VISIBLE);
-        }
 
     }
 
