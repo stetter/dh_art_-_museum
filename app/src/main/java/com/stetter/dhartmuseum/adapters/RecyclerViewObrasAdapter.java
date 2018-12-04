@@ -7,17 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
-import com.stetter.dhartmuseum.model.Obras;
 import com.stetter.dhartmuseum.model.Record;
 
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class
 RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.ViewHolder> {
@@ -42,9 +40,8 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewObrasAdapter.ViewHolder holder, int position) {
         final Record record = listaRecord.get(position);
-
         holder.obra.setText(record.getTitle());
-        holder.descrição.setText(record.getClassification());
+        holder.artista.setText(record.getCentury());
         Picasso.get().load(record.getPrimaryimageurl()).into(holder.imagem);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -64,15 +61,15 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView obra;
-        protected TextView descrição;
-        protected CircleImageView imagem;
+        protected TextView artista;
+        protected ImageView imagem;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            obra = (TextView) itemView.findViewById(R.id.textViewRecyclerObra);
-            descrição = (TextView) itemView.findViewById(R.id.textViewRecyclerDescricao);
-            imagem = (CircleImageView) itemView.findViewById(R.id.circleImageView);
+            obra = itemView.findViewById(R.id.record_title);
+            artista = itemView.findViewById(R.id.record_artist);
+            imagem = itemView.findViewById(R.id.record_image);
         }
     }
 }

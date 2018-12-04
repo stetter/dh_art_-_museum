@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewRecyclerObra"
+        android:id="@+id/record_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewRecyclerDescricao"
+        android:id="@+id/record_artist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerObra" />
+        app:layout_constraintTop_toBottomOf="@+id/record_title" />
 
     <View
         android:layout_width="285dp"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.927"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerDescricao" />
+        app:layout_constraintTop_toBottomOf="@+id/record_artist" />
 
 
     <View
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerDescricao" />
+        app:layout_constraintTop_toBottomOf="@+id/record_artist" />
 
     <TextView
         android:id="@+id/textView4"
@@ -89,7 +89,7 @@
         android:textColor="@color/divider"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerDescricao" />
+        app:layout_constraintTop_toBottomOf="@+id/record_artist" />
 
     <View
         android:layout_width="150dp"
@@ -103,7 +103,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRecyclerDescricao" />
+        app:layout_constraintTop_toBottomOf="@+id/record_artist" />
 
     <ImageView
         android:id="@+id/map"
