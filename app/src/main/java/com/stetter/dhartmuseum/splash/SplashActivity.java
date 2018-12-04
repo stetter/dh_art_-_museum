@@ -9,32 +9,26 @@ import android.widget.TextView;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.login.LoginActivity;
 
-public class SplashActivity extends AppCompatActivity {
+import java.util.Timer;
+import java.util.TimerTask;
 
-    TextView textViewWelcome;
-    TextView textViewArtMuseum;
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        textViewWelcome = findViewById(R.id.textViewWelcome);
-        textViewArtMuseum = findViewById(R.id.textViewArtMuseum);
-
-        textViewWelcome.setOnClickListener(new View.OnClickListener() {
+        new Timer().schedule(new TimerTask() {
             @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            public void run() {
+                skip();
             }
-        });
+        }, 2500);
+    }
 
-        textViewArtMuseum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SplashActivity.this,LoginActivity.class));
-            }
-        });
+    private void skip() {
+        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        finish();
     }
 }
