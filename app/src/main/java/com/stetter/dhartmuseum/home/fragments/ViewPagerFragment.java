@@ -25,13 +25,14 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
     }
 
     public static ViewPagerFragment newInstance(String title, String theme) {
+        ViewPagerFragment fragment = new ViewPagerFragment();
+
         Bundle args = new Bundle();
 
         //args.putInt("IMAGE", image);
         args.putString("TITLE", title);
         args.putString("THEME", theme);
 
-        ViewPagerFragment fragment = new ViewPagerFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,19 +43,21 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_pager, container, false);
 
+        Bundle bundle = getArguments();
+
         ImageView image = view.findViewById(R.id.cardview_image);
         TextView title = view.findViewById(R.id.gallery_title);
         TextView theme = view.findViewById(R.id.gallery_theme);
 
         image.setImageResource(R.drawable.android_image_1);
-        String titleValue = getArguments().getString("TEXT");
-        String themeValue = getArguments().getString("THEME");
+        String titleValue = bundle.getString("TEXT");
+        String themeValue = bundle.getString("THEME");
 
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        //TODO implementar troca do recyclerview com as obras da galeriax
+        //TODO implementar troca do recyclerview com as obras da galeria
     }
 }

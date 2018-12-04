@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
+import com.stetter.dhartmuseum.adapters.ViewPagerAdapter;
 import com.stetter.dhartmuseum.home.fragments.ViewPagerFragment;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
@@ -41,6 +42,9 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
 
         viewPager = findViewById(R.id.viewPager);
 
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), getFragments());
+        viewPager.setAdapter(viewPagerAdapter);
+
         setViewModel();
     }
 
@@ -61,7 +65,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     }
 
     @NonNull
-    private List<Fragment> getFragments(List<ViewPagerFragment> fragmentList) {
+    private List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<>();
 
         //for (ViewPagerFragment fragment : fragmentList) {
