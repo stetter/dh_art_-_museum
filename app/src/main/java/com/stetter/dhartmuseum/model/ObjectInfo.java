@@ -4,7 +4,7 @@ package com.stetter.dhartmuseum.model;
 import com.google.gson.annotations.Expose;
 
 
-public class Info {
+public class ObjectInfo {
 
     @Expose
     private String next;

@@ -33,7 +33,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.stetter.dhartmuseum.R;
-import com.stetter.dhartmuseum.home.HomeActivity;
+import com.stetter.dhartmuseum.home.view.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 

@@ -57,7 +57,7 @@
 
         <activity android:name=".login.CadastroActivity" />
         <activity android:name=".DetalheMuseuActivity" />
-        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".home.view.HomeActivity" />
         <activity android:name=".login.LoginActivity" />
 
         <meta-data

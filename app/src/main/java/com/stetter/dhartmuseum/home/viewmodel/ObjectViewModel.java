@@ -1,14 +1,12 @@
-package com.stetter.dhartmuseum.viewmodel;
+package com.stetter.dhartmuseum.home.viewmodel;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.stetter.dhartmuseum.model.ObjectResponse;
-import com.stetter.dhartmuseum.model.Obras;
 import com.stetter.dhartmuseum.model.Record;
 
 import java.util.List;
@@ -20,7 +18,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.digiwood.digiwood.data.util.AppUtil.isNetworkConnected;
-import static com.stetter.dhartmuseum.data.local.ObjectDatabase.getDatabase;
+import static com.stetter.dhartmuseum.data.local.Database.getDatabase;
 import static com.stetter.dhartmuseum.data.network.RetrofitService.API_KEY;
 import static com.stetter.dhartmuseum.data.network.RetrofitService.getApiService;
 

@@ -60,7 +60,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 //.setPriority(Notification.PRIORITY_MAX)
                 .setContentTitle( "Cloud Notifications" )
                 .setContentText( message )
-                .setContentInfo( "Info" )
+                .setContentInfo( "ObjectInfo" )
                 .setSmallIcon( R.mipmap.ic_launcher );
 
         notificationManager.notify(/*notification id*/1, notificationBuilder.build() );
