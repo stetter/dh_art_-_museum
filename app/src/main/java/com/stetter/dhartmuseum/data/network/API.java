@@ -1,5 +1,6 @@
 package com.stetter.dhartmuseum.data.network;
 
+import com.stetter.dhartmuseum.home.model.GalleryResponse;
 import com.stetter.dhartmuseum.model.ObjectResponse;
 
 import io.reactivex.Observable;
@@ -17,4 +18,7 @@ public interface API {
            @Query("sort") String sort,
             @Query("apikey") String apikey
     );
+
+    @GET("/gallery")
+    Observable<GalleryResponse> getGalleries (@Query("apikey") String apiKey);
 }

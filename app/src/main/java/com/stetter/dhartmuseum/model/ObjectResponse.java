@@ -9,17 +9,18 @@ import com.google.gson.annotations.SerializedName;
 public class ObjectResponse {
 
     @Expose
-    private Info info;
+    @SerializedName("info")
+    private ObjectInfo objectInfo;
     @Expose
     @SerializedName("records")
     private List<Record> records;
 
-    public Info getInfo() {
-        return info;
+    public ObjectInfo getObjectInfo() {
+        return objectInfo;
     }
 
-    public void setInfo(Info info) {
-        this.info = info;
+    public void setObjectInfo(ObjectInfo objectInfo) {
+        this.objectInfo = objectInfo;
     }
 
     public List<Record> getRecords() {

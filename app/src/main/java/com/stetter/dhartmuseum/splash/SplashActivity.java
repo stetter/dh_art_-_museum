@@ -3,12 +3,9 @@ package com.stetter.dhartmuseum.splash;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
 
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.login.LoginActivity;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
