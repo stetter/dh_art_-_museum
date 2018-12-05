@@ -1,4 +1,4 @@
-package com.stetter.dhartmuseum.data.database;
+package com.stetter.dhartmuseum.data.local;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

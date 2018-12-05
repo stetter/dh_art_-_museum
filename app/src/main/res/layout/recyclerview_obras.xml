@@ -33,9 +33,11 @@
 
         <TextView
             android:id="@+id/record_title"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/recyclerview_item_width_size"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="Nome da Obra"
             android:textColor="@color/Texts_in_general"
             android:textStyle="bold"
@@ -46,8 +48,10 @@
 
         <TextView
             android:id="@+id/record_artist"
-            android:layout_width="match_parent"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="Autor da Obra"
             android:textColor="@color/Name_of_the_author"
             android:textStyle="italic"

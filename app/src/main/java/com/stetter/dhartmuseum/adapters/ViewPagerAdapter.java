@@ -8,26 +8,30 @@ import java.util.List;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-        private List<Fragment> fragments;
+    private List<Fragment> fragments;
 
-        public ViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
-            super(fm);
+    public ViewPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
+        super(fm);
+        this.fragments = fragments;
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return fragments.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return fragments.size();
+    }
+
+    public void update(List<Fragment> fragments) {
+        if (fragments.size() == 0) {
             this.fragments = fragments;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.size();
-        }
-
-        public void update(List<Fragment> fragments){
-            this.fragments = fragments;
+        } else {
+            this.fragments.addAll(fragments);
             notifyDataSetChanged();
         }
     }
+}
 

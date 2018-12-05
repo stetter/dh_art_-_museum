@@ -18,7 +18,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.digiwood.digiwood.data.util.AppUtil.isNetworkConnected;
-import static com.stetter.dhartmuseum.data.local.Database.getDatabase;
+import static com.stetter.dhartmuseum.data.database.Database.getDatabase;
 import static com.stetter.dhartmuseum.data.network.RetrofitService.API_KEY;
 import static com.stetter.dhartmuseum.data.network.RetrofitService.getApiService;
 

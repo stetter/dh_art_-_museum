@@ -1,12 +1,12 @@
-package com.stetter.dhartmuseum.data.local;
+package com.stetter.dhartmuseum.data.database;
 
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-import com.stetter.dhartmuseum.data.database.GalleryRecordDAO;
-import com.stetter.dhartmuseum.data.database.ObjectDao;
+import com.stetter.dhartmuseum.data.local.GalleryRecordDAO;
+import com.stetter.dhartmuseum.data.local.ObjectDao;
 import com.stetter.dhartmuseum.home.model.GalleryRecord;
 import com.stetter.dhartmuseum.model.Record;
 

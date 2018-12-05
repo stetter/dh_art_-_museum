@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import io.reactivex.annotations.NonNull;
 
@@ -24,10 +25,12 @@ public class GalleryRecord {
     @Expose
     private String lastupdate;
     @Expose
+    @SerializedName("name")
     private String name;
     @Expose
     private Long objectcount;
     @Expose
+    @SerializedName("theme")
     private String theme;
 
     public Long getFloor() {

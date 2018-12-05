@@ -1,4 +1,4 @@
-package com.stetter.dhartmuseum.data.local;
+package com.stetter.dhartmuseum.data.database;
 
 import android.arch.persistence.room.TypeConverter;
 

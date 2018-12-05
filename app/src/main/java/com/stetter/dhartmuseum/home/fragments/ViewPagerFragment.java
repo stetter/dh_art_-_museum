@@ -34,6 +34,7 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
         args.putString("THEME", theme);
 
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -52,6 +53,9 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
         image.setImageResource(R.drawable.android_image_1);
         String titleValue = bundle.getString("TEXT");
         String themeValue = bundle.getString("THEME");
+
+        title.setText(titleValue);
+        theme.setText(themeValue);
 
         return view;
     }

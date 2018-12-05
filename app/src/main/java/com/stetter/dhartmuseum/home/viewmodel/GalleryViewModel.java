@@ -5,7 +5,8 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import com.stetter.dhartmuseum.data.local.Database;
+
+import com.stetter.dhartmuseum.data.database.Database;
 import com.stetter.dhartmuseum.home.model.GalleryRecord;
 import com.stetter.dhartmuseum.home.model.GalleryResponse;
 
@@ -18,6 +19,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.digiwood.digiwood.data.util.AppUtil.isNetworkConnected;
 import static com.stetter.dhartmuseum.data.network.RetrofitService.API_KEY;
 import static com.stetter.dhartmuseum.data.network.RetrofitService.getApiService;
 
@@ -34,7 +36,7 @@ public class GalleryViewModel extends AndroidViewModel {
 
     public void getGalleryRecords() {
 
-        if (com.digiwood.digiwood.data.util.AppUtil.isNetworkConnected(getApplication())) {
+        if (isNetworkConnected(getApplication())) {
             disposable.add(
                     getApiService().getGalleries(API_KEY)
                             .map(new Function<GalleryResponse, GalleryResponse>() {
