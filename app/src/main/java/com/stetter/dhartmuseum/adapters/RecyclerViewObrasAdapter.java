@@ -41,7 +41,7 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
     public void onBindViewHolder(@NonNull RecyclerViewObrasAdapter.ViewHolder holder, int position) {
         final Record record = listaRecord.get(position);
         holder.obra.setText(record.getTitle());
-        holder.artista.setText(record.getCentury());
+        holder.artista.setText(record.getCreditline()); // TODO trocar para algo mais útil
         Picasso.get().load(record.getPrimaryimageurl()).into(holder.imagem);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,6 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             obra = itemView.findViewById(R.id.record_title);
             artista = itemView.findViewById(R.id.record_artist);
             imagem = itemView.findViewById(R.id.record_image);

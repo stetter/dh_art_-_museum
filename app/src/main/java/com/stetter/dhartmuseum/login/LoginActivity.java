@@ -57,7 +57,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        //updateUI(currentUser);
+        if (currentUser != null){
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+        }
     }
 
     @Override
@@ -89,18 +91,24 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 String email_value = email.getText().toString();
                 String password_value = password.getText().toString();
 
-                firebaseAuth.signInWithEmailAndPassword(email_value, password_value)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                if (!email_value.isEmpty() && !password_value.isEmpty()
+                        && email_value != null && password_value != null) {
+                    firebaseAuth.signInWithEmailAndPassword(email_value, password_value)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please, choose a login option or sign up..",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

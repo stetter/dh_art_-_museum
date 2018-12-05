@@ -53,36 +53,13 @@ public class DetalheMuseuActivity extends AppCompatActivity implements RecyclerV
 
     }
 
-    public void setaRecyclerView(){
+    public void setaRecyclerView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
         adapter = new RecyclerViewObrasAdapter(this, listObras, this);
         mRecyclerView.setAdapter(adapter);
     }
-
-    //Carrega a lista de  pessoas
-    /*private List<Obras> getListObras() {
-
-        // Limpo a lista para adicionar mais pessoas e evitar
-        // Duplicar as pessoas
-        listObras.clear();
-        listObras.add(new Obras("Mona Liza", "Elaborada em XXXX"));
-        listObras.add(new Obras("O Beijo", "Elaborada em XXXX"));
-        listObras.add(new Obras("Guernica", "Elaborada em XXXX"));
-        listObras.add(new Obras("Abaporu", "Elaborada em XXXX"));
-        listObras.add(new Obras("Mona Liza", "Elaborada em XXXX"));
-        listObras.add(new Obras("O Beijo", "Elaborada em XXXX"));
-        listObras.add(new Obras("Guernica", "Elaborada em XXXX"));
-        listObras.add(new Obras("Abaporu", "Elaborada em XXXX"));
-        listObras.add(new Obras("Mona Liza", "Elaborada em XXXX"));
-        listObras.add(new Obras("O Beijo", "Elaborada em XXXX"));
-        listObras.add(new Obras("Abaporu", "Elaborada em XXXX"));
-
-
-        return listObras;
-    }*/
 
     @Override
     public void onItemClick(Record record) {

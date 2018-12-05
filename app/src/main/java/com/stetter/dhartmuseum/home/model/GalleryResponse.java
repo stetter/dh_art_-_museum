@@ -1,4 +1,3 @@
-
 package com.stetter.dhartmuseum.home.model;
 
 import com.google.gson.annotations.Expose;
