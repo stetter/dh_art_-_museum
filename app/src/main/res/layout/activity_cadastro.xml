@@ -22,7 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:inputType="text"
+            />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -41,7 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/e_mail"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -60,7 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -78,7 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirm_password"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
 
     <ImageView
