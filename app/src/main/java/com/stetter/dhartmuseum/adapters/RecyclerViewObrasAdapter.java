@@ -58,6 +58,11 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
         return listaRecord.size();
     }
 
+    public void update(List<Record> recordList) {
+        this.listaRecord = recordList;
+        notifyDataSetChanged();
+    }
+
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView obra;

@@ -20,5 +20,7 @@ public interface API {
     );
 
     @GET("/gallery")
-    Observable<GalleryResponse> getGalleries(@Query("apikey") String apiKey);
+    Observable<GalleryResponse> getGalleries(
+            @Query("floor") int floor,
+            @Query("apikey") String apiKey);
 }
