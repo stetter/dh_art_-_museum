@@ -36,6 +36,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
+        <TextView
+            android:id="@+id/textview_galleries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:text="Galerias"
+            android:textColor="#323232"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/current_level_spinner"/>
+
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
@@ -47,7 +60,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/current_level_spinner" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_galleries" />
 
         <View
             android:id="@+id/divider_01"

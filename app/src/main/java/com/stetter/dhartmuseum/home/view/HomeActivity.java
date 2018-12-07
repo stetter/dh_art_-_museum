@@ -51,12 +51,12 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
         recyclerView.setAdapter(adapter);
         setObjects();
 
-        floors.add("Andar_Térreo");
-        floors.add("Andar_1");
-        floors.add("Andar_2");
-        floors.add("Andar_3");
-        floors.add("Andar_4");
-        floors.add("Andar_5");
+        floors.add("Térreo");
+        floors.add("1º andar");
+        floors.add("2º andar");
+        floors.add("3º andar");
+        floors.add("4º andar");
+        floors.add("5º andar");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, floors);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
