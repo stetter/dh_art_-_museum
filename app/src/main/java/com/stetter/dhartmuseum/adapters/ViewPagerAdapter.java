@@ -26,12 +26,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public void update(List<Fragment> fragments) {
-        if (fragments.size() == 0) {
-            this.fragments = fragments;
-        } else {
-            this.fragments.addAll(fragments);
-            notifyDataSetChanged();
-        }
+        this.fragments = fragments;
+        notifyDataSetChanged();
     }
 }
 

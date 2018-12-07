@@ -24,14 +24,13 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
     public ViewPagerFragment() {
     }
 
-    public static ViewPagerFragment newInstance(String title, String theme) {
+    public static ViewPagerFragment newInstance(String title) {
         ViewPagerFragment fragment = new ViewPagerFragment();
 
         Bundle args = new Bundle();
 
         //args.putInt("IMAGE", image);
         args.putString("TITLE", title);
-        args.putString("THEME", theme);
 
         fragment.setArguments(args);
 
@@ -48,14 +47,11 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
 
         ImageView image = view.findViewById(R.id.cardview_image);
         TextView title = view.findViewById(R.id.gallery_title);
-        TextView theme = view.findViewById(R.id.gallery_theme);
 
-        image.setImageResource(R.drawable.android_image_1);
-        String titleValue = bundle.getString("TEXT");
-        String themeValue = bundle.getString("THEME");
+        image.setImageResource(R.drawable.img_harvard_courtyard);
+        String titleValue = bundle.getString("TITLE");
 
         title.setText(titleValue);
-        theme.setText(themeValue);
 
         return view;
     }

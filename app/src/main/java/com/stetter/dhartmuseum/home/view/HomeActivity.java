@@ -3,89 +3,120 @@ package com.stetter.dhartmuseum.home.view;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.adapters.ViewPagerAdapter;
-import com.stetter.dhartmuseum.customResources.CustomViewPager;
 import com.stetter.dhartmuseum.home.fragments.ViewPagerFragment;
 import com.stetter.dhartmuseum.home.model.GalleryRecord;
-import com.stetter.dhartmuseum.home.viewmodel.GalleryViewModel;
+import com.stetter.dhartmuseum.home.viewmodel.HomeViewModel;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Record;
 import com.stetter.dhartmuseum.obras.view.ObrasActivity;
-import com.stetter.dhartmuseum.home.viewmodel.ObjectViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
 
-    private CustomViewPager viewPager;
+    private ViewPager viewPager;
     private List<Record> recordList = new ArrayList<>();
     private RecyclerView recyclerView;
     RecyclerViewObrasAdapter adapter;
-    private ObjectViewModel objectViewModel;
-    private GalleryViewModel galleryViewModel;
-    List<Fragment> fragments = new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
+    private Spinner spinner;
+    private ArrayList<String> floors = new ArrayList<>();
+    private int selectedFloor;
+    private HomeViewModel viewModel;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        viewPager = findViewById(R.id.viewPager);
-
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), new ArrayList<>());
+        initAssets();
         viewPager.setAdapter(viewPagerAdapter);
+        recyclerView.setAdapter(adapter);
+        setObjects();
 
-        setObjectViewModel();
-        setGalleryViewModel(viewPagerAdapter);
+        floors.add("Térreo");
+        floors.add("1º andar");
+        floors.add("2º andar");
+        floors.add("3º andar");
+        floors.add("4º andar");
+        floors.add("5º andar");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, floors);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setGallery(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    private void setGalleryViewModel(ViewPagerAdapter viewPagerAdapter) {
-        galleryViewModel = ViewModelProviders.of(this).get(GalleryViewModel.class);
-        galleryViewModel.getGalleryRecords();
-        galleryViewModel.galleryLiveData.observe(this, new Observer<List<GalleryRecord>>() {
+    private void initAssets() {
+        recyclerView = findViewById(R.id.recyclerviewHome);
+        viewPager = findViewById(R.id.viewPager);
+        spinner = findViewById(R.id.current_level_spinner);
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        viewPagerAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), new ArrayList<>());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new RecyclerViewObrasAdapter(this, recordList, this);
+    }
+
+    private void setGallery(int selected_floor) {
+        viewModel.getGalleryRecords(selected_floor);
+        viewModel.galleryLiveData.observe(this, new Observer<List<GalleryRecord>>() {
             @Override
             public void onChanged(@Nullable List<GalleryRecord> galleryRecordList) {
+                fragments.clear();
                 for (int i = 0; i < galleryRecordList.size(); i++) {
-                    fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName().toString(), galleryRecordList.get(i).getTheme()));
+                    fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName()));
                 }
                 viewPagerAdapter.update(fragments);
             }
         });
     }
 
-    private void setObjectViewModel() {
-        objectViewModel = ViewModelProviders.of(this).get(ObjectViewModel.class);
+    private void setObjects() {
 
-        objectViewModel.getObjects("primaryimageurl");
+        viewModel.getObjects("primaryimageurl");
 
-        objectViewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
+        viewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
             @Override
             public void onChanged(@Nullable List<Record> records) {
+
+                // Retirar clear quando colocar paginacao
+                recordList.clear();
                 for (int i = 0; i < records.size(); i++) {
                     recordList.add(records.get(i));
                 }
-                setRecyclerView();
+                adapter.update(recordList);
             }
         });
     }
 
-    public void setRecyclerView() {
-        recyclerView = findViewById(R.id.recyclerviewHome);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerViewObrasAdapter(this, recordList, this);
-        recyclerView.setAdapter(adapter);
-    }
 
     @Override
     public void onItemClick(Record record) {

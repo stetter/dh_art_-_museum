@@ -91,8 +91,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 String email_value = email.getText().toString();
                 String password_value = password.getText().toString();
 
-                if (!email_value.isEmpty() && !password_value.isEmpty()
-                        && email_value != null && password_value != null) {
+                if (!email_value.isEmpty() && !password_value.isEmpty()) {
                     firebaseAuth.signInWithEmailAndPassword(email_value, password_value)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
