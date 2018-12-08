@@ -23,7 +23,7 @@ import com.stetter.dhartmuseum.home.model.GalleryRecord;
 import com.stetter.dhartmuseum.home.viewmodel.HomeViewModel;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Record;
-import com.stetter.dhartmuseum.obras.view.ObrasActivity;
+import com.stetter.dhartmuseum.obras_detalhe.view.ObrasActivity;
 
 import java.util.ArrayList;
 import java.util.List;
