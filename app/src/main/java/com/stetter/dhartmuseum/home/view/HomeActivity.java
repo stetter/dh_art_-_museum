@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.stetter.dhartmuseum.R;
@@ -39,6 +40,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     private ArrayList<String> floors = new ArrayList<>();
     private int selectedFloor;
     private HomeViewModel viewModel;
+    private ProgressBar progressBar;
     private ViewPagerAdapter viewPagerAdapter;
 
     @Override
@@ -76,7 +78,9 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
 
     private void initAssets() {
         recyclerView = findViewById(R.id.recyclerviewHome);
+        progressBar = findViewById(R.id.progressBar);
         viewPager = findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(fragments.size());
         spinner = findViewById(R.id.current_level_spinner);
         viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         viewPagerAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), new ArrayList<>());
@@ -96,6 +100,10 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
                 }
                 viewPagerAdapter.update(fragments);
             }
+        });
+
+        viewModel.isLoadingGallery.observe(this, isLoading -> {
+            progressBar.setVisibility((isLoading) ? View.VISIBLE : View.GONE);
         });
     }
 
