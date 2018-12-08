@@ -15,6 +15,7 @@ import com.stetter.dhartmuseum.home.viewmodel.HomeViewModel;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
 import com.stetter.dhartmuseum.model.Record;
+import com.stetter.dhartmuseum.obras.adapter.RecyclerViewListaObrasAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class ObrasActivity extends AppCompatActivity implements RecyclerViewOnIt
     private List<Record> recordList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    RecyclerViewObrasAdapter adapter;
+    RecyclerViewListaObrasAdapter adapter;
     private HomeViewModel objectViewModel;
     private RecyclerViewOnItemClickListener listener;
 
@@ -54,7 +55,7 @@ public class ObrasActivity extends AppCompatActivity implements RecyclerViewOnIt
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        adapter = new RecyclerViewObrasAdapter(this, recordList, listener);
+        adapter = new RecyclerViewListaObrasAdapter(this, recordList, listener);
         mRecyclerView.setAdapter(adapter);
     }
 
