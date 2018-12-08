@@ -75,7 +75,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     }
 
     private void initAssets() {
-        recyclerView = findViewById(R.id.recyclerviewHome);
+        recyclerView = findViewById(R.id.recyclerviewObras);
         viewPager = findViewById(R.id.viewPager);
         spinner = findViewById(R.id.current_level_spinner);
         viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
