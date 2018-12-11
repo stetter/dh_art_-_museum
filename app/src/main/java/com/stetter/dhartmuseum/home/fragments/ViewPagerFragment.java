@@ -29,7 +29,7 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
 
         Bundle args = new Bundle();
 
-        //args.putString("IMAGE", image);
+        //args.putString("URL", url);
         args.putString("TITLE", title);
 
         fragment.setArguments(args);
@@ -48,12 +48,11 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
         TextView title = view.findViewById(R.id.gallery_title);
         ImageView image = view.findViewById(R.id.cardview_image);
 
-
-
-        //String imageResource = bundle.getString("IMAGE");
+        //String imageResource = bundle.getString("URL");
         String titleValue = bundle.getString("TITLE");
 
         title.setText(titleValue);
+        image.setImageResource(R.drawable.img_brickwall);
         //Picasso.get().load(imageResource).into(image);
 
         return view;
