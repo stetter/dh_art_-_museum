@@ -116,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     }
 
     private void initAssets() {
-        recyclerView = findViewById(R.id.recyclerviewHome);
+        recyclerView = findViewById(R.id.recyclerviewObras);
         progressBar = findViewById(R.id.progressBar);
         viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(fragments.size());
