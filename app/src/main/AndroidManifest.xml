@@ -63,7 +63,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".obras_detalhe.view.ObrasActivity"
+            android:name=".obras_detalhe.view.WorkDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

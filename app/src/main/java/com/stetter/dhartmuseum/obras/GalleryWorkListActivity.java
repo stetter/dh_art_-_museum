@@ -15,6 +15,7 @@ import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
 import com.stetter.dhartmuseum.model.Record;
 import com.stetter.dhartmuseum.obras.adapter.RecyclerViewListaObrasAdapter;
+import com.stetter.dhartmuseum.obras_detalhe.view.WorkDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,21 +26,20 @@ public class GalleryWorkListActivity extends AppCompatActivity implements Recycl
     private List<Record> recordList = new ArrayList<>();
     private RecyclerView recyclerView;
     RecyclerViewListaObrasAdapter adapter;
-    private HomeViewModel objectViewModel;
+    private HomeViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_work_list);
 
-        HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         setRecyclerView();
 
-        objectViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
-        objectViewModel.getObjects("primaryimageurl");
+        viewModel.getObjects("primaryimageurl");
 
-        objectViewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
+        viewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
             @Override
             public void onChanged(@Nullable List<Record> records) {
                 adapter.update(records);
@@ -57,7 +57,7 @@ public class GalleryWorkListActivity extends AppCompatActivity implements Recycl
 
     @Override
     public void onItemClick(Record record) {
-        Intent intent = new Intent(GalleryWorkListActivity.this, GalleryWorkListActivity.class);
+        Intent intent = new Intent(this, WorkDetailsActivity.class);
         intent.putExtra("record", record);
         startActivity(intent);
     }
