@@ -101,13 +101,13 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                                         finish();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                 } else {
                     Toast.makeText(LoginActivity.this, "Please, choose a login option or sign up..",
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });

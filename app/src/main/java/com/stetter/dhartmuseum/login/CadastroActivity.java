@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +24,9 @@ public class CadastroActivity extends AppCompatActivity {
 
     private TextInputEditText email;
     private TextInputEditText password;
+    private TextInputEditText confirmPassword;
+
+    private CheckBox checkBoxAgree;
 
     private FirebaseAuth firebaseAuth;
 
@@ -30,9 +35,11 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+
         initViews();
         initObjects();
         register();
+
 
     }
 
@@ -42,34 +49,39 @@ public class CadastroActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email_value = email.getText().toString();
                 String password_value = password.getText().toString();
+                String confirmPassword_value = confirmPassword.getText().toString();
+
 
                 if (TextUtils.isEmpty(email_value)) {
                     Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
                     return;
-                }
-                if (TextUtils.isEmpty(password_value)) {
+                } else if (TextUtils.isEmpty(password_value)) {
                     Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
                     return;
-                }
-
-                if (password_value.length() < 6) {
+                } else if (password_value.length() < 6) {
                     Toast.makeText(getApplicationContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
                     return;
-                }
+                } else if (!password_value.equals(confirmPassword_value)) {
+                    Toast.makeText(getApplicationContext(), "Password not equals", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (!checkBoxAgree.isChecked()) {
+                    Toast.makeText(getApplicationContext(), "You must agree the Terms", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
 
-
-                firebaseAuth.createUserWithEmailAndPassword(email_value, password_value)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                                    finish();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    firebaseAuth.createUserWithEmailAndPassword(email_value, password_value)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                        finish();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
     }
@@ -82,5 +94,7 @@ public class CadastroActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.btn_sign_up);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        confirmPassword = findViewById(R.id.confirm_password);
+        checkBoxAgree = findViewById(R.id.image_check_box);
     }
 }
