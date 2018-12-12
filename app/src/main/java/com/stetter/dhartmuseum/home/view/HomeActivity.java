@@ -135,8 +135,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
                 fragments.clear();
                 viewPagerAdapter.update(fragments);
                 for (int i = 0; i < galleryRecordList.size(); i++) {
-                    fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName(), galleryRecordList.get(i).getGalleryid()));
-                    //                     fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName(), galleryRecordList.get(i).getId()));
+                    fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName(), galleryRecordList.get(i).getGallerynumber()));
                 }
                 viewPagerAdapter.update(fragments);
             }
@@ -149,7 +148,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
 
     private void setObjects() {
 
-        viewModel.getObjects("primaryimageurl");
+        viewModel.getObjects("department");
 
         viewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
             @Override

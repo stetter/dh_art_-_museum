@@ -37,7 +37,7 @@ public class WorkDetailsActivity extends AppCompatActivity {
 
         Picasso.get().load(record.getPrimaryimageurl()).into(image);
 
-        if (!record.getTitle().isEmpty() && record.getTitle() != null) {
+        if (record.getTitle() != null && !record.getTitle().isEmpty()) {
             title.setText(record.getTitle());
         } else {
             title.setText("Informação não disponível.");

@@ -10,23 +10,15 @@ import retrofit2.http.Query;
 
 public interface API {
 
-    // Buscar uma lista de filmes de uma categoria
     @GET("/object")
     Observable<ObjectResponse> getObjects(
-           /* @Query("classification") String classification,
-            @Query("q") String q,*/
-            @Query("sort") String sort,
-            @Query("apikey") String apikey
-    );
-
-    @GET("/object")
-    Observable<ObjectResponse> getObjectsByGalleryNumber(
-            @Query("gallery") long galleryNumber,
+            @Query("keyword") String keyword,
             @Query("apikey") String apikey
     );
 
     @GET("/gallery")
     Observable<GalleryResponse> getGalleries(
             @Query("floor") int floor,
-            @Query("apikey") String apiKey);
+            @Query("apikey") String apiKey
+    );
 }

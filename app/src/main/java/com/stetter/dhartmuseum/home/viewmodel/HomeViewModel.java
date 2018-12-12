@@ -47,34 +47,15 @@ public class HomeViewModel extends AndroidViewModel {
         if (isNetworkConnected(getApplication())) {
             disposable.add(
                     getApiService().getGalleries(floor, API_KEY)
-                            .map(new Function<GalleryResponse, GalleryResponse>() {
-                                @Override
-                                public GalleryResponse apply(GalleryResponse response) throws Exception {
-                                    return saveGalleries(response);
-                                }
-                            })
+                            .map(response -> saveGalleries(response))
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .doOnSubscribe(new Consumer<Disposable>() {
-                                @Override
-                                public void accept(Disposable disposable) throws Exception {
-                                    isLoadingGallery.setValue(true);
-                                }
-                            })
+                            .doOnSubscribe(disposable -> isLoadingGallery.setValue(true))
                             .doOnTerminate(() -> {
                                 isLoadingGallery.setValue(false);
                             })
-                            .subscribe(new Consumer<GalleryResponse>() {
-                                @Override
-                                public void accept(GalleryResponse response) throws Exception {
-                                    galleryLiveData.setValue(response.getGalleryRecords());
-                                }
-                            }, new Consumer<Throwable>() {
-                                @Override
-                                public void accept(Throwable throwable) throws Exception {
-                                    Log.i("LOG", "Error: " + throwable.getMessage());
-                                }
-                            })
+                            .subscribe(response -> galleryLiveData.setValue(response.getGalleryRecords()),
+                                    throwable -> Log.i("LOG", "Error: " + throwable.getMessage()))
             );
         } else {
             disposable.add(
@@ -87,39 +68,25 @@ public class HomeViewModel extends AndroidViewModel {
                             .doOnTerminate(() -> {
                                 isLoadingGallery.setValue(false);
                             })
-                            .subscribe(new Consumer<List<GalleryRecord>>() {
-                                @Override
-                                public void accept(List<GalleryRecord> galleryRecordList) throws Exception {
-                                    galleryLiveData.setValue(galleryRecordList);
-                                }
-                            }, new Consumer<Throwable>() {
-                                @Override
-                                public void accept(Throwable throwable) throws Exception {
-                                    Log.i("LOG", "Error: " + throwable.getMessage());
-                                }
-                            })
+                            .subscribe(galleryRecordList -> galleryLiveData.setValue(galleryRecordList),
+                                    throwable -> Log.i("LOG", "Error: " + throwable.getMessage()))
             );
         }
 
     }
 
-    public void getObjects(String sort) {
+    public void getObjects(String keyword) {
 
         if (isNetworkConnected(getApplication())) {
 
             disposable.add(
-                    getApiService().getObjects(sort, API_KEY)
-                            /* .map(response -> {
-                                 return saveObject(response);
-                             })*/
+                    getApiService().getObjects(keyword, API_KEY)
+                            .map(response -> {
+                                return saveObject(response);
+                            })
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .doOnSubscribe(new Consumer<Disposable>() {
-                                @Override
-                                public void accept(Disposable disposable) throws Exception {
-                                    isLoadingGallery.setValue(true);
-                                }
-                            })
+                            .doOnSubscribe(disposable -> isLoadingGallery.setValue(true))
                             .doOnTerminate(() -> {
                                 isLoadingGallery.setValue(false);
                             })
@@ -128,11 +95,8 @@ public class HomeViewModel extends AndroidViewModel {
                                     , throwable -> {
                                         Log.i("LOG", "Error: " + throwable.getMessage());
                                     })
-
             );
-
         } else {
-
             disposable.add(
                     getDatabase(getApplication()).movieDAO().getAll()
                             .subscribeOn(Schedulers.newThread())
@@ -148,65 +112,11 @@ public class HomeViewModel extends AndroidViewModel {
                                     , throwable -> {
                                         Log.i("LOG", "Error: " + throwable.getMessage());
                                     })
-
-            );
-        }
-    }
-
-    public void getObjectsByGalleryId(long galleryId) {
-
-        if (isNetworkConnected(getApplication())) {
-
-            disposable.add(
-                    getApiService().getObjectsByGalleryNumber(galleryId, API_KEY)
-                             .map(response -> {
-                                 return saveObjectByGalleryId(response);
-                             })
-                            .subscribeOn(Schedulers.newThread())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .doOnSubscribe(new Consumer<Disposable>() {
-                                @Override
-                                public void accept(Disposable disposable) throws Exception {
-                                    isLoadingObjectByGalleryId.setValue(true);
-                                }
-                            })
-                            .doOnTerminate(() -> {
-                                isLoadingObjectByGalleryId.setValue(false);
-                            })
-                            .subscribe(response ->
-                                            objectByGalleryIdLiveData.setValue(response.getRecords())
-                                    , throwable -> {
-                                        Log.i("LOG", "Error: " + throwable.getMessage());
-                                    })
-            );
-
-        } else {
-
-            disposable.add(
-                    getDatabase(getApplication()).movieDAO().getAll()
-                            .subscribeOn(Schedulers.newThread())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .doOnSubscribe(disposable -> {
-                                isLoadingObjectByGalleryId.setValue(true);
-                            })
-                            .doOnTerminate(() -> {
-                                isLoadingObjectByGalleryId.setValue(false);
-                            })
-                            .subscribe(record ->
-                                            objectByGalleryIdLiveData.setValue(record)
-                                    , throwable -> {
-                                        Log.i("LOG", "Error: " + throwable.getMessage());
-                                    })
             );
         }
     }
 
     private ObjectResponse saveObject(ObjectResponse response) {
-        getDatabase(getApplication()).movieDAO().insert(response.getRecords());
-        return response;
-    }
-
-    private ObjectResponse saveObjectByGalleryId(ObjectResponse response) {
         getDatabase(getApplication()).movieDAO().insert(response.getRecords());
         return response;
     }

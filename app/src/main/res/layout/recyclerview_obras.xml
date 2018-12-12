@@ -7,7 +7,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:paddingTop="4dp">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardView"
@@ -25,7 +27,7 @@
                 android:id="@+id/record_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorAccent"
+                android:background="@color/white"
                 android:scaleType="centerCrop" />
         </android.support.v7.widget.CardView>
 
@@ -33,6 +35,8 @@
             android:id="@+id/record_title"
             android:layout_width="@dimen/recyclerview_item_width_size"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="2"
@@ -46,8 +50,10 @@
 
         <TextView
             android:id="@+id/record_artist"
-            android:layout_width="160dp"
+            android:layout_width="@dimen/recyclerview_item_width_size"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="Autor da Obra"

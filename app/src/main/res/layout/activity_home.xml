@@ -42,6 +42,7 @@
             android:layout_height="@dimen/viewPagerHeight"
             android:layout_marginTop="16dp"
             android:clipToPadding="false"
+            android:paddingStart="16dp"
             android:paddingEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

@@ -23,14 +23,14 @@ public class ViewPagerFragment extends Fragment {
     public ViewPagerFragment() {
     }
 
-    public static ViewPagerFragment newInstance(String title, long galleryId) {
+    public static ViewPagerFragment newInstance(String title, String galleryId) {
         ViewPagerFragment fragment = new ViewPagerFragment();
 
         Bundle args = new Bundle();
 
-        //args.putString("URL", url);
         args.putString("TITLE", title);
-        args.putLong("GALLERY_ID", galleryId);
+        args.putString("GALLERY_ID", galleryId);
+        //args.putLong("GALLERY_ID", galleryId);
 
         fragment.setArguments(args);
 
@@ -48,12 +48,10 @@ public class ViewPagerFragment extends Fragment {
         TextView title = view.findViewById(R.id.gallery_title);
         ImageView image = view.findViewById(R.id.cardview_image);
 
-        //String imageResource = bundle.getString("URL");
         String titleValue = bundle.getString("TITLE");
 
         title.setText(titleValue);
         image.setImageResource(R.drawable.img_brickwall);
-        //Picasso.get().load(imageResource).into(image);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +61,6 @@ public class ViewPagerFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return view;
     }
-
-
 }
