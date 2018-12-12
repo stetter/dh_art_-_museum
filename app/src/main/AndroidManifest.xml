@@ -92,7 +92,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".obras.ObrasActivity"></activity>
+        <activity android:name=".obras.GalleryWorkListActivity"></activity>
     </application>
 
 </manifest>

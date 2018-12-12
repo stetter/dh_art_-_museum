@@ -19,21 +19,21 @@ import com.stetter.dhartmuseum.obras.adapter.RecyclerViewListaObrasAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObrasActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
+public class GalleryWorkListActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
 
     private List<Obras> listObras = new ArrayList<>();
     private List<Record> recordList = new ArrayList<>();
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView recyclerView;
     RecyclerViewListaObrasAdapter adapter;
     private HomeViewModel objectViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_obras2);
+        setContentView(R.layout.activity_gallery_work_list);
 
-        setaRecyclerView();
+        HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        setRecyclerView();
 
         objectViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
@@ -47,18 +47,17 @@ public class ObrasActivity extends AppCompatActivity implements RecyclerViewOnIt
         });
     }
 
-    public void setaRecyclerView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerviewObras2);
-        mLayoutManager = new GridLayoutManager(this, 2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
+    public void setRecyclerView() {
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_works);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerViewListaObrasAdapter(recordList, this);
-        mRecyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onItemClick(Record record) {
-        Intent intent = new Intent(this, com.stetter.dhartmuseum.obras_detalhe.view.ObrasActivity.class);
+        Intent intent = new Intent(GalleryWorkListActivity.this, GalleryWorkListActivity.class);
         intent.putExtra("record", record);
         startActivity(intent);
     }

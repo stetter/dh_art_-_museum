@@ -2,7 +2,6 @@ package com.stetter.dhartmuseum.home.fragments;
 
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,9 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.stetter.dhartmuseum.R;
-import com.stetter.dhartmuseum.obras.ObrasActivity;
+import com.stetter.dhartmuseum.obras.GalleryWorkListActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,13 +23,14 @@ public class ViewPagerFragment extends Fragment {
     public ViewPagerFragment() {
     }
 
-    public static ViewPagerFragment newInstance(String title) {
+    public static ViewPagerFragment newInstance(String title, Long galleryId) {
         ViewPagerFragment fragment = new ViewPagerFragment();
 
         Bundle args = new Bundle();
 
         //args.putString("URL", url);
         args.putString("TITLE", title);
+        args.putLong("GALLERY_ID", galleryId);
 
         fragment.setArguments(args);
 
@@ -59,8 +58,8 @@ public class ViewPagerFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ObrasActivity.class);
-                intent.putExtra("Obra", titleValue);
+                Intent intent = new Intent(getContext(), GalleryWorkListActivity.class);
+                intent.putExtra("GALLERY_ID", bundle.getLong("GALLERY_ID"));
                 startActivity(intent);
             }
         });

@@ -19,6 +19,12 @@ public interface API {
             @Query("apikey") String apikey
     );
 
+    @GET("/object")
+    Observable<ObjectResponse> getObjectsByGalleryId(
+            @Query("gallery") Long galleryId,
+            @Query("apikey") String apikey
+    );
+
     @GET("/gallery")
     Observable<GalleryResponse> getGalleries(
             @Query("floor") int floor,
