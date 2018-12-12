@@ -23,7 +23,7 @@ public class ViewPagerFragment extends Fragment {
     public ViewPagerFragment() {
     }
 
-    public static ViewPagerFragment newInstance(String title, Long galleryId) {
+    public static ViewPagerFragment newInstance(String title, long galleryId) {
         ViewPagerFragment fragment = new ViewPagerFragment();
 
         Bundle args = new Bundle();
@@ -59,7 +59,7 @@ public class ViewPagerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), GalleryWorkListActivity.class);
-                intent.putExtra("GALLERY_ID", bundle.getLong("GALLERY_ID"));
+                intent.putExtra("BUNDLE", bundle);
                 startActivity(intent);
             }
         });

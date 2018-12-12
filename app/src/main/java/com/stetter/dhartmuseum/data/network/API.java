@@ -20,8 +20,8 @@ public interface API {
     );
 
     @GET("/object")
-    Observable<ObjectResponse> getObjectsByGalleryId(
-            @Query("gallery") Long galleryId,
+    Observable<ObjectResponse> getObjectsByGalleryNumber(
+            @Query("gallery") long galleryNumber,
             @Query("apikey") String apikey
     );
 

@@ -34,11 +34,9 @@ public class GalleryWorkListActivity extends AppCompatActivity implements Recycl
 
         HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
-        /*
-        objectViewModel.getObjects("primaryimageurl");
+        viewModel.getObjectsByGalleryId(getIntent().getExtras().getLong("GALLERY_ID"));
 
-
-        objectViewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
+        viewModel.objectByGalleryIdLiveData.observe(this, new Observer<List<Record>>() {
             @Override
             public void onChanged(@Nullable List<Record> records) {
                 for (int i = 0; i < records.size(); i++) {
@@ -47,7 +45,6 @@ public class GalleryWorkListActivity extends AppCompatActivity implements Recycl
                 setRecyclerView();
             }
         });
-        */
     }
 
     public void setRecyclerView() {

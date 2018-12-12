@@ -153,15 +153,15 @@ public class HomeViewModel extends AndroidViewModel {
         }
     }
 
-    public void getObjectsByGalleryId(Long galleryId) {
+    public void getObjectsByGalleryId(long galleryId) {
 
         if (isNetworkConnected(getApplication())) {
 
             disposable.add(
-                    getApiService().getObjectsByGalleryId(galleryId, API_KEY)
-                            /* .map(response -> {
-                                 return saveObject(response);
-                             })*/
+                    getApiService().getObjectsByGalleryNumber(galleryId, API_KEY)
+                             .map(response -> {
+                                 return saveObjectByGalleryId(response);
+                             })
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
                             .doOnSubscribe(new Consumer<Disposable>() {
@@ -202,6 +202,11 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private ObjectResponse saveObject(ObjectResponse response) {
+        getDatabase(getApplication()).movieDAO().insert(response.getRecords());
+        return response;
+    }
+
+    private ObjectResponse saveObjectByGalleryId(ObjectResponse response) {
         getDatabase(getApplication()).movieDAO().insert(response.getRecords());
         return response;
     }
