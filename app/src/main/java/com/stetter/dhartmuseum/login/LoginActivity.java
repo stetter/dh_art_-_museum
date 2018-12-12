@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         initViews();
         initObjects();
         loginFacebook();
@@ -142,6 +143,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onSuccess(LoginResult loginResult) {
                 Log.d("TAG", "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             }
 
             @Override

@@ -15,11 +15,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.stetter.dhartmuseum.R;
+import com.stetter.dhartmuseum.obras.ObrasActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ViewPagerFragment extends Fragment implements View.OnClickListener {
+public class ViewPagerFragment extends Fragment {
 
     public ViewPagerFragment() {
     }
@@ -55,11 +56,17 @@ public class ViewPagerFragment extends Fragment implements View.OnClickListener 
         image.setImageResource(R.drawable.img_brickwall);
         //Picasso.get().load(imageResource).into(image);
 
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ObrasActivity.class);
+                intent.putExtra("Obra", titleValue);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
-    @Override
-    public void onClick(View v) {
-        //TODO implementar troca do recyclerview com as obras da galeria
-    }
+
 }

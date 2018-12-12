@@ -1,4 +1,4 @@
-package com.stetter.dhartmuseum.obras.view;
+package com.stetter.dhartmuseum.obras_detalhe.view;
 
 
 import android.os.Bundle;

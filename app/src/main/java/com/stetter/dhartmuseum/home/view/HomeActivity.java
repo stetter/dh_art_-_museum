@@ -11,12 +11,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.facebook.login.LoginManager;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FacebookAuthCredential;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.adapters.ViewPagerAdapter;
@@ -24,8 +32,9 @@ import com.stetter.dhartmuseum.home.fragments.ViewPagerFragment;
 import com.stetter.dhartmuseum.home.model.GalleryRecord;
 import com.stetter.dhartmuseum.home.viewmodel.HomeViewModel;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
+import com.stetter.dhartmuseum.login.LoginActivity;
 import com.stetter.dhartmuseum.model.Record;
-import com.stetter.dhartmuseum.obras.view.ObrasActivity;
+import com.stetter.dhartmuseum.obras_detalhe.view.ObrasActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +52,35 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     private HomeViewModel viewModel;
     private ProgressBar progressBar;
     private ViewPagerAdapter viewPagerAdapter;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        currentUser = mAuth.getCurrentUser();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_logout:
+                mAuth.signOut();
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +126,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerViewObrasAdapter(this, recordList, this);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void setGallery(int selectedFloor) {
