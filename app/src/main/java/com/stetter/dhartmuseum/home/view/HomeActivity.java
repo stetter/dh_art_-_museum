@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,8 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.facebook.login.LoginManager;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.auth.FacebookAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.stetter.dhartmuseum.R;
@@ -116,11 +113,11 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     }
 
     private void initAssets() {
-        recyclerView = findViewById(R.id.recyclerviewHome);
-        progressBar = findViewById(R.id.progressBar);
-        viewPager = findViewById(R.id.viewPager);
+        recyclerView = findViewById(R.id.recyclerview_home);
+        progressBar = findViewById(R.id.gallery_progress_bar);
+        viewPager = findViewById(R.id.viewpager_home);
         viewPager.setOffscreenPageLimit(fragments.size());
-        spinner = findViewById(R.id.current_level_spinner);
+        spinner = findViewById(R.id.spinner_home);
         viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         viewPagerAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), new ArrayList<>());
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
