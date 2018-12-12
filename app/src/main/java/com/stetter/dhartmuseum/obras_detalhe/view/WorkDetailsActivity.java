@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.model.Record;
 
-public class ObrasActivity extends AppCompatActivity {
+public class WorkDetailsActivity extends AppCompatActivity {
 
     private ImageView image;
     private TextView title;
@@ -26,7 +26,7 @@ public class ObrasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_obras);
+        setContentView(R.layout.activity_work_details);
 
         initAssets();
         setInformation();
@@ -37,49 +37,49 @@ public class ObrasActivity extends AppCompatActivity {
 
         Picasso.get().load(record.getPrimaryimageurl()).into(image);
 
-        if(record.getTitle() != ""){
+        if (!record.getTitle().isEmpty() && record.getTitle() != null) {
             title.setText(record.getTitle());
         } else {
             title.setText("Informação não disponível.");
         }
 
-        if(record.getContact() != ""){
+        if (record.getContact() != "") {
             author.setText(record.getContact());
         } else {
             author.setText("Informação não disponível.");
         }
 
-        if(record.getDescription() != ""){
+        if (record.getDescription() != "") {
             description.setText(record.getDescription());
         } else {
             description.setText("Informação não disponível.");
         }
 
-        if(record.getDated() != ""){
+        if (record.getDated() != "") {
             date.setText(record.getDated());
         } else {
             date.setText("Informação não disponível.");
         }
 
-        if(record.getProvenance() != ""){
+        if (record.getProvenance() != "") {
             places.setText(record.getProvenance());
         } else {
             places.setText("Informação não disponível.");
         }
 
-        if(record.getCentury() != ""){
+        if (record.getCentury() != "") {
             period.setText(record.getCentury());
         } else {
             period.setText("Informação não disponível.");
         }
 
-        if(record.getCulture() != ""){
+        if (record.getCulture() != "") {
             culture.setText(record.getCulture());
         } else {
             culture.setText("Informação não disponível.");
         }
 
-        if(record.getDepartment() != ""){
+        if (record.getDepartment() != "") {
             whereToFind.setText(record.getDepartment());
         } else {
             whereToFind.setText("Informação não disponível.");

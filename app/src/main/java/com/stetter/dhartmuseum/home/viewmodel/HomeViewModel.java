@@ -29,12 +29,14 @@ import static com.stetter.dhartmuseum.data.network.RetrofitService.getApiService
 public class HomeViewModel extends AndroidViewModel {
 
     public MutableLiveData<List<GalleryRecord>> galleryLiveData = new MutableLiveData<>();
-    public MutableLiveData<Throwable> galleryLiveDataError = new MutableLiveData<>();
-    public MutableLiveData<Boolean> isLoadingGallery = new MutableLiveData<>();
-    private CompositeDisposable disposable = new CompositeDisposable();
     public MutableLiveData<List<Record>> objectLiveData = new MutableLiveData<>();
-    MutableLiveData<Throwable> objectLiveDataError = new MutableLiveData<>();
+    public MutableLiveData<List<Record>> objectByGalleryIdLiveData = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isLoadingGallery = new MutableLiveData<>();
     public MutableLiveData<Boolean> isLoadingObject = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isLoadingObjectByGalleryId = new MutableLiveData<>();
+    private CompositeDisposable disposable = new CompositeDisposable();
+    public MutableLiveData<Throwable> galleryLiveDataError = new MutableLiveData<>();
+    MutableLiveData<Throwable> objectLiveDataError = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -147,6 +149,54 @@ public class HomeViewModel extends AndroidViewModel {
                                         Log.i("LOG", "Error: " + throwable.getMessage());
                                     })
 
+            );
+        }
+    }
+
+    public void getObjectsByGalleryId(Long galleryId) {
+
+        if (isNetworkConnected(getApplication())) {
+
+            disposable.add(
+                    getApiService().getObjectsByGalleryId(galleryId, API_KEY)
+                            /* .map(response -> {
+                                 return saveObject(response);
+                             })*/
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .doOnSubscribe(new Consumer<Disposable>() {
+                                @Override
+                                public void accept(Disposable disposable) throws Exception {
+                                    isLoadingObjectByGalleryId.setValue(true);
+                                }
+                            })
+                            .doOnTerminate(() -> {
+                                isLoadingObjectByGalleryId.setValue(false);
+                            })
+                            .subscribe(response ->
+                                            objectByGalleryIdLiveData.setValue(response.getRecords())
+                                    , throwable -> {
+                                        Log.i("LOG", "Error: " + throwable.getMessage());
+                                    })
+            );
+
+        } else {
+
+            disposable.add(
+                    getDatabase(getApplication()).movieDAO().getAll()
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .doOnSubscribe(disposable -> {
+                                isLoadingObjectByGalleryId.setValue(true);
+                            })
+                            .doOnTerminate(() -> {
+                                isLoadingObjectByGalleryId.setValue(false);
+                            })
+                            .subscribe(record ->
+                                            objectByGalleryIdLiveData.setValue(record)
+                                    , throwable -> {
+                                        Log.i("LOG", "Error: " + throwable.getMessage());
+                                    })
             );
         }
     }

@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.stetter.dhartmuseum.R;
-import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.home.viewmodel.HomeViewModel;
 import com.stetter.dhartmuseum.interfaces.RecyclerViewOnItemClickListener;
 import com.stetter.dhartmuseum.model.Obras;
@@ -20,24 +19,24 @@ import com.stetter.dhartmuseum.obras.adapter.RecyclerViewListaObrasAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObrasActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
+public class GalleryWorkListActivity extends AppCompatActivity implements RecyclerViewOnItemClickListener {
 
     private List<Obras> listObras = new ArrayList<>();
     private List<Record> recordList = new ArrayList<>();
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView recyclerView;
     RecyclerViewListaObrasAdapter adapter;
-    private HomeViewModel objectViewModel;
     private RecyclerViewOnItemClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_obras2);
+        setContentView(R.layout.activity_gallery_work_list);
 
-        objectViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
+        /*
         objectViewModel.getObjects("primaryimageurl");
+
 
         objectViewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
             @Override
@@ -45,26 +44,25 @@ public class ObrasActivity extends AppCompatActivity implements RecyclerViewOnIt
                 for (int i = 0; i < records.size(); i++) {
                     recordList.add(records.get(i));
                 }
-                setaRecyclerView();
+                setRecyclerView();
             }
         });
+        */
     }
 
-    public void setaRecyclerView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerviewObras2);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
+    public void setRecyclerView() {
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_works);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerViewListaObrasAdapter(this, recordList, listener);
-        mRecyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onItemClick(Record record) {
-        Intent intent = new Intent(ObrasActivity.this, ObrasActivity.class);
+        Intent intent = new Intent(GalleryWorkListActivity.this, GalleryWorkListActivity.class);
         intent.putExtra("record", record);
         startActivity(intent);
-        //startActivity(new Intent(HomeActivity.this, ObrasActivity.class));
     }
 
 }
