@@ -139,19 +139,6 @@ public class HomeViewModel extends AndroidViewModel {
         }
     }
 
-    private void getFromLocal() {
-        ObjectLocalRepository localRepository = new ObjectLocalRepository();
-
-        disposable.add(localRepository.getLocalRecords(getApplication().getApplicationContext())
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(results -> {
-                    objectLiveData.setValue(results);
-                }, throwable -> {
-                    Log.i("LOG", "Error: " + throwable.getMessage());
-                }));
-    }
-
     private void getFromNetwork(String item) {
         ObjectRemoteRepository remoteRepository = new ObjectRemoteRepository();
 
@@ -163,6 +150,19 @@ public class HomeViewModel extends AndroidViewModel {
                     objectLiveData.setValue(itemResponse.getRecords());
                 }, throwable -> {
                     // Se deu erro mostramos o log
+                    Log.i("LOG", "Error: " + throwable.getMessage());
+                }));
+    }
+
+    private void getFromLocal() {
+        ObjectLocalRepository localRepository = new ObjectLocalRepository();
+
+        disposable.add(localRepository.getLocalRecords(getApplication().getApplicationContext())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(results -> {
+                    objectLiveData.setValue(results);
+                }, throwable -> {
                     Log.i("LOG", "Error: " + throwable.getMessage());
                 }));
     }
