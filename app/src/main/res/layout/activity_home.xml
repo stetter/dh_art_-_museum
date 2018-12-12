@@ -14,7 +14,7 @@
         android:padding="16dp">
 
         <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/current_level_spinner"
+            android:id="@+id/spinner_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -34,11 +34,11 @@
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/current_level_spinner"/>
+            app:layout_constraintTop_toBottomOf="@+id/spinner_home"/>
 
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
+            android:id="@+id/viewpager_home"
             android:layout_width="match_parent"
             android:layout_height="@dimen/viewPagerHeight"
             android:layout_marginStart="8dp"
@@ -59,7 +59,7 @@
             android:background="@color/transparentPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+            app:layout_constraintTop_toBottomOf="@+id/viewpager_home" />
 
         <TextView
             android:id="@+id/textview_works"
@@ -76,7 +76,7 @@
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerviewObras"
+            android:id="@+id/recyclerview_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -87,13 +87,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textview_works" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/gallery_progress_bar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/viewPager"
-            app:layout_constraintEnd_toEndOf="@+id/viewPager"
-            app:layout_constraintStart_toStartOf="@+id/viewPager"
-            app:layout_constraintTop_toTopOf="@+id/viewPager" />
+            app:layout_constraintBottom_toBottomOf="@+id/viewpager_home"
+            app:layout_constraintEnd_toEndOf="@+id/viewpager_home"
+            app:layout_constraintStart_toStartOf="@+id/viewpager_home"
+            app:layout_constraintTop_toTopOf="@+id/viewpager_home" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
