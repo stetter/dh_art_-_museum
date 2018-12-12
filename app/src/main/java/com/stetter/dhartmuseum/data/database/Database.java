@@ -5,8 +5,8 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-import com.stetter.dhartmuseum.data.local.GalleryRecordDAO;
-import com.stetter.dhartmuseum.data.local.ObjectDao;
+import com.stetter.dhartmuseum.data.dao.GalleryRecordDAO;
+import com.stetter.dhartmuseum.data.dao.ObjectDAO;
 import com.stetter.dhartmuseum.home.model.GalleryRecord;
 import com.stetter.dhartmuseum.model.Record;
 
@@ -14,8 +14,8 @@ import com.stetter.dhartmuseum.model.Record;
 @TypeConverters(Converters.class)
 public abstract class Database extends RoomDatabase {
 
-    public abstract ObjectDao movieDAO();
-    public abstract GalleryRecordDAO getGalleryRecordDAO();
+    public abstract ObjectDAO objectDAO();
+    public abstract GalleryRecordDAO galleryRecordDAO();
 
     private static volatile Database INSTANCE;
 

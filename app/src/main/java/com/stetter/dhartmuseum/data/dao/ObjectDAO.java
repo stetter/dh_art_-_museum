@@ -1,4 +1,4 @@
-package com.stetter.dhartmuseum.data.local;
+package com.stetter.dhartmuseum.data.dao;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
@@ -14,7 +14,7 @@ import java.util.List;
 import io.reactivex.Flowable;
 
 @Dao
-public interface ObjectDao {
+public interface ObjectDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(Record record);

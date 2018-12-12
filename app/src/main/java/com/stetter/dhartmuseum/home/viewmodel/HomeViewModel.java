@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.stetter.dhartmuseum.data.database.Database;
+import com.stetter.dhartmuseum.data.local.ObjectLocalRepository;
+import com.stetter.dhartmuseum.data.network.ObjectRemoteRepository;
 import com.stetter.dhartmuseum.home.model.GalleryRecord;
 import com.stetter.dhartmuseum.home.model.GalleryResponse;
 import com.stetter.dhartmuseum.model.ObjectResponse;
@@ -16,9 +18,6 @@ import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.digiwood.digiwood.data.util.AppUtil.isNetworkConnected;
@@ -59,7 +58,7 @@ public class HomeViewModel extends AndroidViewModel {
             );
         } else {
             disposable.add(
-                    Database.getDatabase(getApplication()).getGalleryRecordDAO().getAll()
+                    Database.getDatabase(getApplication()).galleryRecordDAO().getAll()
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
                             .doOnSubscribe(disposable -> {
@@ -98,7 +97,7 @@ public class HomeViewModel extends AndroidViewModel {
             );
         } else {
             disposable.add(
-                    getDatabase(getApplication()).movieDAO().getAll()
+                    getDatabase(getApplication()).objectDAO().getAll()
                             .subscribeOn(Schedulers.newThread())
                             .observeOn(AndroidSchedulers.mainThread())
                             .doOnSubscribe(disposable -> {
@@ -117,12 +116,12 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     private ObjectResponse saveObject(ObjectResponse response) {
-        getDatabase(getApplication()).movieDAO().insert(response.getRecords());
+        getDatabase(getApplication()).objectDAO().insert(response.getRecords());
         return response;
     }
 
     private GalleryResponse saveGalleries(GalleryResponse response) {
-        Database.getDatabase(getApplication()).getGalleryRecordDAO().insert(response.getGalleryRecords());
+        Database.getDatabase(getApplication()).galleryRecordDAO().insert(response.getGalleryRecords());
         return response;
     }
 
@@ -130,5 +129,47 @@ public class HomeViewModel extends AndroidViewModel {
     protected void onCleared() {
         super.onCleared();
         disposable.clear();
+    }
+
+    public void searchItem(String item) {
+        if (isNetworkConnected(getApplication())) {
+            getFromNetwork(item);
+        } else {
+            getFromLocal();
+        }
+    }
+
+    private void getFromLocal() {
+        ObjectLocalRepository localRepository = new ObjectLocalRepository();
+
+        disposable.add(localRepository.getLocalRecords(getApplication().getApplicationContext())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(results -> {
+                    objectLiveData.setValue(results);
+                }, throwable -> {
+                    Log.i("LOG", "Error: " + throwable.getMessage());
+                }));
+    }
+
+    private void getFromNetwork(String item) {
+        ObjectRemoteRepository remoteRepository = new ObjectRemoteRepository();
+
+        disposable.add(remoteRepository.searchItems(item)
+                .subscribeOn(Schedulers.newThread())
+                .map(this::saveItems)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(itemResponse -> {
+                    objectLiveData.setValue(itemResponse.getRecords());
+                }, throwable -> {
+                    // Se deu erro mostramos o log
+                    Log.i("LOG", "Error: " + throwable.getMessage());
+                }));
+    }
+
+    public ObjectResponse saveItems(ObjectResponse response) {
+        ObjectLocalRepository localRepository = new ObjectLocalRepository();
+        localRepository.insertItems(getApplication(), response.getRecords());
+        return response;
     }
 }
