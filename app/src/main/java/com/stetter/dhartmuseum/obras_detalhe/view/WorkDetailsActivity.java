@@ -43,43 +43,47 @@ public class WorkDetailsActivity extends AppCompatActivity {
             title.setText("Informação não disponível.");
         }
 
-        if (record.getContact() != "") {
+        if (record.getContact() != null && !record.getContact().isEmpty()) {
             author.setText(record.getContact());
         } else {
             author.setText("Informação não disponível.");
         }
 
-        if (record.getDescription() != "") {
+        if (record.getDescription() != null && !record.getDescription().isEmpty()) {
             description.setText(record.getDescription());
         } else {
-            description.setText("Informação não disponível.");
+            if (record.getVerificationleveldescription() != null && !record.getVerificationleveldescription().isEmpty()) {
+                description.setText(record.getVerificationleveldescription());
+            } else {
+                description.setText("Informação não disponível.");
+            }
         }
 
-        if (record.getDated() != "") {
+        if (record.getDated() != null && !record.getDated().isEmpty()) {
             date.setText(record.getDated());
         } else {
             date.setText("Informação não disponível.");
         }
 
-        if (record.getProvenance() != "") {
+        if (record.getProvenance() != null && !record.getProvenance().isEmpty()) {
             places.setText(record.getProvenance());
         } else {
             places.setText("Informação não disponível.");
         }
 
-        if (record.getCentury() != "") {
+        if (record.getCentury() != null && !record.getCentury().isEmpty()) {
             period.setText(record.getCentury());
         } else {
             period.setText("Informação não disponível.");
         }
 
-        if (record.getCulture() != "") {
+        if (record.getCulture() != null && !record.getCulture().isEmpty()) {
             culture.setText(record.getCulture());
         } else {
             culture.setText("Informação não disponível.");
         }
 
-        if (record.getDepartment() != "") {
+        if (record.getDepartment() != null && !record.getDepartment().isEmpty()) {
             whereToFind.setText(record.getDepartment());
         } else {
             whereToFind.setText("Informação não disponível.");

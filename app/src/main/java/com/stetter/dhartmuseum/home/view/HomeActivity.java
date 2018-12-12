@@ -136,6 +136,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
                 viewPagerAdapter.update(fragments);
                 for (int i = 0; i < galleryRecordList.size(); i++) {
                     fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName(), galleryRecordList.get(i).getGalleryid()));
+                    //                     fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName(), galleryRecordList.get(i).getId()));
                 }
                 viewPagerAdapter.update(fragments);
             }
