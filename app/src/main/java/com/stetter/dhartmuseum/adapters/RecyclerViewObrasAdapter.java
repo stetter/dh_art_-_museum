@@ -33,7 +33,7 @@ RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.V
     @NonNull
     @Override
     public RecyclerViewObrasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_obras, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_work_tiles, parent, false);
         return new ViewHolder(view);
     }
 

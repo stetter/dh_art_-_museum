@@ -47,7 +47,8 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     private ArrayList<String> floors = new ArrayList<>();
     private int selectedFloor;
     private HomeViewModel viewModel;
-    private ProgressBar progressBar;
+    private ProgressBar viewPagerProgressBar;
+    private ProgressBar recyclerViewProgressBar;
     private ViewPagerAdapter viewPagerAdapter;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -115,7 +116,8 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
 
     private void initAssets() {
         recyclerView = findViewById(R.id.recyclerview_home);
-        progressBar = findViewById(R.id.gallery_progress_bar);
+        viewPagerProgressBar = findViewById(R.id.viewpager_progress_bar);
+        recyclerViewProgressBar = findViewById(R.id.recyclerview_progress_bar);
         viewPager = findViewById(R.id.viewpager_home);
         viewPager.setOffscreenPageLimit(fragments.size());
         spinner = findViewById(R.id.spinner_home);
@@ -142,7 +144,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
         });
 
         viewModel.isLoadingGallery.observe(this, isLoading -> {
-            progressBar.setVisibility((isLoading) ? View.VISIBLE : View.GONE);
+            viewPagerProgressBar.setVisibility((isLoading) ? View.VISIBLE : View.GONE);
         });
     }
 
@@ -161,6 +163,10 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
                 }
                 adapter.update(recordList);
             }
+        });
+
+        viewModel.isLoadingObject.observe(this, isLoading -> {
+            recyclerViewProgressBar.setVisibility((isLoading) ? View.VISIBLE : View.GONE);
         });
     }
 

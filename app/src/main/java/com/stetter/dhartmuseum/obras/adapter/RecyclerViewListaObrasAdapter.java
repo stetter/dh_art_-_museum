@@ -28,7 +28,7 @@ public class RecyclerViewListaObrasAdapter extends RecyclerView.Adapter<Recycler
     @NonNull
     @Override
     public RecyclerViewListaObrasAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_obras, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_work_tiles, parent, false);
         return new RecyclerViewListaObrasAdapter.ViewHolder(view);
     }
 
