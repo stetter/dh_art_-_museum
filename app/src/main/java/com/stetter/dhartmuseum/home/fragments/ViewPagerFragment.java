@@ -30,7 +30,7 @@ public class ViewPagerFragment extends Fragment {
 
         Bundle args = new Bundle();
 
-        //args.putInt("IMAGE", image);
+        //args.putString("URL", url);
         args.putString("TITLE", title);
 
         fragment.setArguments(args);
@@ -46,13 +46,15 @@ public class ViewPagerFragment extends Fragment {
 
         Bundle bundle = getArguments();
 
-        ImageView image = view.findViewById(R.id.cardview_image);
         TextView title = view.findViewById(R.id.gallery_title);
+        ImageView image = view.findViewById(R.id.cardview_image);
 
-        image.setImageResource(R.drawable.img_harvard_courtyard);
+        //String imageResource = bundle.getString("URL");
         String titleValue = bundle.getString("TITLE");
 
         title.setText(titleValue);
+        image.setImageResource(R.drawable.img_brickwall);
+        //Picasso.get().load(imageResource).into(image);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

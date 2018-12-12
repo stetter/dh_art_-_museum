@@ -21,12 +21,12 @@ public class
 RecyclerViewObrasAdapter extends RecyclerView.Adapter<RecyclerViewObrasAdapter.ViewHolder> {
 
     private List<Record> listaRecord;
-    Context mctx;
+    Context context;
     private RecyclerViewOnItemClickListener listener;
 
     public RecyclerViewObrasAdapter(Context context, List<Record> listaRecord, RecyclerViewOnItemClickListener listener) {
         this.listaRecord = listaRecord;
-        this.mctx = context;
+        this.context = context;
         this.listener = listener;
     }
 

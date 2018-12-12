@@ -30,7 +30,7 @@ public class HomeViewModel extends AndroidViewModel {
 
     public MutableLiveData<List<GalleryRecord>> galleryLiveData = new MutableLiveData<>();
     public MutableLiveData<Throwable> galleryLiveDataError = new MutableLiveData<>();
-    private MutableLiveData<Boolean> isLoadingGallery = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isLoadingGallery = new MutableLiveData<>();
     private CompositeDisposable disposable = new CompositeDisposable();
     public MutableLiveData<List<Record>> objectLiveData = new MutableLiveData<>();
     MutableLiveData<Throwable> objectLiveDataError = new MutableLiveData<>();

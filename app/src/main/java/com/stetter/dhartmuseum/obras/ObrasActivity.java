@@ -61,7 +61,7 @@ public class ObrasActivity extends AppCompatActivity implements RecyclerViewOnIt
 
     @Override
     public void onItemClick(Record record) {
-        Intent intent = new Intent(ObrasActivity.this, com.stetter.dhartmuseum.obras_detalhe.view.ObrasActivity.class);
+        Intent intent = new Intent(ObrasActivity.this, ObrasActivity.class);
         intent.putExtra("record", record);
         startActivity(intent);
         //startActivity(new Intent(HomeActivity.this, ObrasActivity.class));

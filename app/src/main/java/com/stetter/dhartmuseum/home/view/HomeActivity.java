@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.facebook.login.LoginManager;
@@ -48,6 +50,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     private ArrayList<String> floors = new ArrayList<>();
     private int selectedFloor;
     private HomeViewModel viewModel;
+    private ProgressBar progressBar;
     private ViewPagerAdapter viewPagerAdapter;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -113,28 +116,35 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
     }
 
     private void initAssets() {
-        recyclerView = findViewById(R.id.recyclerviewObras);
+        recyclerView = findViewById(R.id.recyclerviewHome);
+        progressBar = findViewById(R.id.progressBar);
         viewPager = findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(fragments.size());
         spinner = findViewById(R.id.current_level_spinner);
         viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         viewPagerAdapter = new ViewPagerAdapter(this.getSupportFragmentManager(), new ArrayList<>());
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerViewObrasAdapter(this, recordList, this);
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setGallery(int selected_floor) {
-        viewModel.getGalleryRecords(selected_floor);
+    private void setGallery(int selectedFloor) {
+        viewModel.getGalleryRecords(selectedFloor);
         viewModel.galleryLiveData.observe(this, new Observer<List<GalleryRecord>>() {
             @Override
             public void onChanged(@Nullable List<GalleryRecord> galleryRecordList) {
                 fragments.clear();
+                viewPagerAdapter.update(fragments);
                 for (int i = 0; i < galleryRecordList.size(); i++) {
                     fragments.add(ViewPagerFragment.newInstance(galleryRecordList.get(i).getName()));
                 }
                 viewPagerAdapter.update(fragments);
             }
+        });
+
+        viewModel.isLoadingGallery.observe(this, isLoading -> {
+            progressBar.setVisibility((isLoading) ? View.VISIBLE : View.GONE);
         });
     }
 
@@ -146,7 +156,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
             @Override
             public void onChanged(@Nullable List<Record> records) {
 
-                // Retirar clear quando colocar paginacao
+                // TODO Retirar clear quando colocar paginacao
                 recordList.clear();
                 for (int i = 0; i < records.size(); i++) {
                     recordList.add(records.get(i));
