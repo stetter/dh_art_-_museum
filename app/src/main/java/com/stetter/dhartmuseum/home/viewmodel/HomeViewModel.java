@@ -115,6 +115,47 @@ public class HomeViewModel extends AndroidViewModel {
         }
     }
 
+    public void getObjectsGallery(long gallery) {
+
+        if (isNetworkConnected(getApplication())) {
+
+            disposable.add(
+                    getApiService().getObjectsGallery(gallery, API_KEY)
+                            .map(response -> {
+                                return saveObject(response);
+                            })
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .doOnSubscribe(disposable -> isLoadingGallery.setValue(true))
+                            .doOnTerminate(() -> {
+                                isLoadingGallery.setValue(false);
+                            })
+                            .subscribe(response ->
+                                            objectByGalleryIdLiveData.setValue(response.getRecords())
+                                    , throwable -> {
+                                        Log.i("LOG", "Error: " + throwable.getMessage());
+                                    })
+            );
+        } else {
+            disposable.add(
+                    getDatabase(getApplication()).objectDAO().getAll()
+                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .doOnSubscribe(disposable -> {
+                                isLoadingGallery.setValue(true);
+                            })
+                            .doOnTerminate(() -> {
+                                isLoadingGallery.setValue(false);
+                            })
+                            .subscribe(record ->
+                                            objectByGalleryIdLiveData.setValue(record)
+                                    , throwable -> {
+                                        Log.i("LOG", "Error: " + throwable.getMessage());
+                                    })
+            );
+        }
+    }
+
     private ObjectResponse saveObject(ObjectResponse response) {
         getDatabase(getApplication()).objectDAO().insert(response.getRecords());
         return response;

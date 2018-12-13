@@ -23,13 +23,13 @@ public class ViewPagerFragment extends Fragment {
     public ViewPagerFragment() {
     }
 
-    public static ViewPagerFragment newInstance(String title, String galleryId) {
+    public static ViewPagerFragment newInstance(String title, Long galleryId) {
         ViewPagerFragment fragment = new ViewPagerFragment();
 
         Bundle args = new Bundle();
 
         args.putString("TITLE", title);
-        args.putString("GALLERY_ID", galleryId);
+        args.putLong("GALLERY_ID", galleryId);
         //args.putLong("GALLERY_ID", galleryId);
 
         fragment.setArguments(args);
@@ -49,6 +49,7 @@ public class ViewPagerFragment extends Fragment {
         ImageView image = view.findViewById(R.id.cardview_image);
 
         String titleValue = bundle.getString("TITLE");
+        Long galleryID = bundle.getLong("GALLERY_ID");
 
         title.setText(titleValue);
         image.setImageResource(R.drawable.img_brickwall);
@@ -57,7 +58,7 @@ public class ViewPagerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), GalleryWorkListActivity.class);
-                intent.putExtra("BUNDLE", bundle);
+                intent.putExtra("GALLERY_ID", galleryID);
                 startActivity(intent);
             }
         });

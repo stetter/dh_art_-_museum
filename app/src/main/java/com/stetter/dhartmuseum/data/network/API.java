@@ -21,4 +21,9 @@ public interface API {
             @Query("floor") int floor,
             @Query("apikey") String apiKey
     );
+    @GET("/object")
+    Observable<ObjectResponse> getObjectsGallery(
+            @Query("gallery") long gallery,
+            @Query("apikey") String apikey
+    );
 }

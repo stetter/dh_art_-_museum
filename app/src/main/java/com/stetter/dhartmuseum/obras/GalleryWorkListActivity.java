@@ -40,9 +40,9 @@ public class GalleryWorkListActivity extends AppCompatActivity implements Recycl
 
         HomeViewModel viewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
-        viewModel.getObjects(getIntent().getExtras().getString("GALLERY_NUMBER"));
+        viewModel.getObjectsGallery(getIntent().getExtras().getLong("GALLERY_ID"));
 
-        viewModel.objectLiveData.observe(this, new Observer<List<Record>>() {
+        viewModel.objectByGalleryIdLiveData.observe(this, new Observer<List<Record>>() {
             @Override
             public void onChanged(@Nullable List<Record> records) {
                 for (int i = 0; i < records.size(); i++) {
