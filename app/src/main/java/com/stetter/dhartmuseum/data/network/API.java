@@ -20,10 +20,11 @@ public interface API {
     Observable<GalleryResponse> getGalleries(
             @Query("floor") int floor,
             @Query("apikey") String apiKey
+
     );
     @GET("/object")
     Observable<ObjectResponse> getObjectsGallery(
             @Query("gallery") long gallery,
-            @Query("apikey") String apikey
+            @Query("apikey") String apiKey
     );
 }

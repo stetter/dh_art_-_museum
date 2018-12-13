@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/shape_round_borders"
-        android:hint="Buscar obra nesta galeria"
+        android:hint="Busca por obras aqui"
         android:inputType="text"
         android:paddingLeft="16dp"
         android:queryHint="Search Art &amp; Museum"
