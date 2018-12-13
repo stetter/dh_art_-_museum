@@ -2,8 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.stetter.myapplication.MainActivity" >
+    <item android:id="@+id/local"
+        android:title="Local"
+        android:icon="@drawable/ic_map_black_24dp"
+        app:showAsAction="never"/>
     <item android:id="@+id/action_logout"
         android:title="Logout"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        app:showAsAction="never"
+        android:orderInCategory="100"/>
 </menu>

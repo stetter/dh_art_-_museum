@@ -65,7 +65,8 @@ public class GalleryWorkListActivity extends AppCompatActivity implements Recycl
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (editable.toString().length() > 2) {
+                if (editable.toString().length() > 3) {
+                    searchTerm = editable.toString();
                     viewModel.searchItem(editable.toString());
                 }
                 viewModel.objectLiveData.observe(GalleryWorkListActivity.this, new Observer<List<Record>>() {

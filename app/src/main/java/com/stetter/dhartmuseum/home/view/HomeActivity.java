@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.stetter.dhartmuseum.MapsActivity;
 import com.stetter.dhartmuseum.R;
 import com.stetter.dhartmuseum.adapters.RecyclerViewObrasAdapter;
 import com.stetter.dhartmuseum.adapters.ViewPagerAdapter;
@@ -75,6 +76,9 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewOnIte
                 Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                return true;
+            case R.id.local:
+                startActivity(new Intent(HomeActivity.this, MapsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
