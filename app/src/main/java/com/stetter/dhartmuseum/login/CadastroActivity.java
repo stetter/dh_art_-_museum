@@ -26,6 +26,10 @@ public class CadastroActivity extends AppCompatActivity {
     private TextInputEditText password;
     private TextInputEditText confirmPassword;
 
+    private TextInputLayout emailLayout;
+    private TextInputLayout passwordLayout;
+    private TextInputLayout confirmPasswordLayout;
+
     private CheckBox checkBoxAgree;
 
     private FirebaseAuth firebaseAuth;
@@ -53,16 +57,16 @@ public class CadastroActivity extends AppCompatActivity {
 
 
                 if (TextUtils.isEmpty(email_value)) {
-                    Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
+                    emailLayout.setError("Please fill in the required fields");
                     return;
                 } else if (TextUtils.isEmpty(password_value)) {
-                    Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
+                    passwordLayout.setError("Please fill in the required fields");
                     return;
                 } else if (password_value.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                    passwordLayout.setError("Password must be at least 6 characters");
                     return;
                 } else if (!password_value.equals(confirmPassword_value)) {
-                    Toast.makeText(getApplicationContext(), "Password not equals", Toast.LENGTH_SHORT).show();
+                    confirmPasswordLayout.setError("Password not equals");
                     return;
                 } else if (!checkBoxAgree.isChecked()) {
                     Toast.makeText(getApplicationContext(), "You must agree the Terms", Toast.LENGTH_SHORT).show();
@@ -96,5 +100,8 @@ public class CadastroActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirm_password);
         checkBoxAgree = findViewById(R.id.image_check_box);
+        emailLayout = findViewById(R.id.text_email);
+        passwordLayout = findViewById(R.id.text_password);
+        confirmPasswordLayout = findViewById(R.id.text_confirm_password);
     }
 }
